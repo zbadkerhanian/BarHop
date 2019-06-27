@@ -8,20 +8,25 @@ import SettingsScreen from './screens/SettingsScreen'
 export default class App extends React.Component {
   render(){
     return (
-      <AppContainer/>
+      <View style={{flex: 1}}> 
+        <AppContainer />
+        <StatusBar backgroundColor="white" barStyle="dark-content"/>
+      </View>
+        
     );
-  }
+  }  
 }
  //style={s.global}
 const CustomDrawerComponent = (props) => (
-  <SafeAreaView style={{paddingTop: Platform.OS === 'ios' ? 0 : Expo.Constants.statusBarHeight}}>
-    <View style={{ height: 150, backgroundColor:'white', alignItems:'center', justifyContent:'center'}}>
+  <SafeAreaView>
+    <View style={{ height: 150, backgroundColor:'white', alignItems:'center', justifyContent:'center', marginTop:Expo.Constants.statusBarHeight}}>
       <Image source={require('./assets/user-icon.png')} style={{ height: 80, width: 80, borderRadius:60 }}/>
     </View>
     <ScrollView>
       <DrawerItems {...props} />
     </ScrollView>
-  </SafeAreaView>
+    <StatusBar backgroundColor="white" barStyle="dark-content"/>
+  </SafeAreaView>  
 )
 
 const AppDrawerNavigator = createDrawerNavigator({

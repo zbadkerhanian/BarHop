@@ -4,7 +4,8 @@ import {
     View,
     Text,
     StyleSheet,
-    Platform
+    Platform,
+    StatusBar
 } from "react-native";
 import { Header, Left, Right, Icon } from 'native-base'
 
@@ -23,6 +24,7 @@ export default class SettingsScreen extends Component {
                         SettingsScreen
                     </Text>
                 </View>  
+                <StatusBar backgroundColor="white" barStyle="dark-content"/>
             </View>
         );
     }

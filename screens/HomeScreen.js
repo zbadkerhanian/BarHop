@@ -5,31 +5,33 @@ import {
     View,
     Text,
     StyleSheet,
-    Platform
+    Platform,
+    StatusBar
 } from "react-native";
 import { Header, Left, Right, Icon } from 'native-base'
-
 
 export default class HomeScreen extends Component {
 
     constructor(props){
         super(props);
     }
-
+    
+    
     render() {
 
         return (
-            <View style={[s.global, styles.container] }>
-                <Header style={{backgroundColor:'light grey'}}>
+            <View style={[s.global, styles.container] }>  
+                <Header style={{backgroundColor:'white'}}>
                     <Left>
                         <Icon name="menu" onPress={() => {this.props.navigation.openDrawer()}}/>  
                     </Left>
-                </Header>
+                </Header>  
                 <View style={{flex: 1, alignItems:'center', justifyContent:'center'}}>
                     <Text>
                         HomeScreen
                     </Text>   
                 </View>  
+                <StatusBar backgroundColor="white" barStyle="dark-content"/>   
             </View>
         );
     }
