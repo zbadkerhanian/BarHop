@@ -10,7 +10,7 @@ export default class App extends React.Component {
     return (
       <View style={{flex: 1}}> 
         <AppContainer />
-        <StatusBar backgroundColor="white" barStyle="dark-content"/>
+        {/* <StatusBar backgroundColor="white" barStyle="dark-content"/> */}
       </View>
         
     );
@@ -19,13 +19,13 @@ export default class App extends React.Component {
  //style={s.global}
 const CustomDrawerComponent = (props) => (
   <SafeAreaView>
-    <View style={{ height: 150, backgroundColor:'white', alignItems:'center', justifyContent:'center', marginTop:Expo.Constants.statusBarHeight}}>
+    <View style={{ backgroundColor:'gray', height: 150, alignItems:'center', justifyContent:'center', marginTop:Expo.Constants.statusBarHeight}}>
       <Image source={require('./assets/user-icon.png')} style={{ height: 80, width: 80, borderRadius:60 }}/>
     </View>
-    <ScrollView>
+    <ScrollView style={{backgroundColor:'gray'}}>
       <DrawerItems {...props} />
     </ScrollView>
-    <StatusBar backgroundColor="white" barStyle="dark-content"/>
+    {/* <StatusBar backgroundColor="white" barStyle="dark-content"/> */}
   </SafeAreaView>  
 )
 

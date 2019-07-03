@@ -24,7 +24,7 @@ export default class SettingsScreen extends Component {
                         SettingsScreen
                     </Text>
                 </View>  
-                <StatusBar backgroundColor="white" barStyle="dark-content"/>
+                {/* <StatusBar backgroundColor="white" barStyle="dark-content"/> */}
             </View>
         );
     }
