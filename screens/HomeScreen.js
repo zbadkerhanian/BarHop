@@ -9,7 +9,6 @@ import {
     StatusBar
 } from "react-native";
 import { Header } from 'react-native-elements'
-//import { Header, Left, Right, Icon } from 'native-base'
 
 export default class HomeScreen extends Component {
 
@@ -23,34 +22,41 @@ export default class HomeScreen extends Component {
         return (
             <View style={[s.global, styles.container] }>  
                 <Header
-                    // backgroundColor='white'   
-                    statusBarProps={{ backgroundColor: 'red', barStyle:'light-content'}}
+                     //backgroundColor='#282828'   
+                    statusBarProps={{ 
+                        backgroundColor:'#202020', 
+                        translucent:true, 
+                        barStyle:'light-content'
+                    }}
 
-                    leftComponent={{ icon: 'menu', color: '#fff' }}
-                    centerComponent={{ text: 'BarHop', style: { color: '#fff', fontSize: 25 } }}
-                    rightComponent={{ icon: 'home', color: '#fff' }}
+                    //leftComponent={{ icon: 'menu', color: '#fff' }}
+                    //leftComponent={ <Icon name="menu" color='#fff' underlayColor='#282828' onPress={() => {this.props.navigation.openDrawer()}}/>}
+                    leftComponent={{ 
+                        icon: "menu",
+                        color:'#fff', 
+                        underlayColor:'#282828',
+                        onPress: this.props.navigation.openDrawer
+                    }}
+                    centerComponent={{ 
+                        text: 'BarHop', 
+                        style: { 
+                            color: '#fff', 
+                            fontSize: 25 
+                        } 
+                    }}
+                    //rightComponent={<Icon name="home" color='#fff' />}
                     containerStyle={{
-                        backgroundColor: 'gray',
-                        justifyContent: 'space-around',
+                        backgroundColor: '#282828',
+                        borderBottomColor:'#282828', 
+                        borderBottomWidth:1 
                       }}
+                    
                 />
-                {/* <Header style={{backgroundColor:'white'}}> 
-                    <Left>
-                        <Icon name="menu" onPress={() => {this.props.navigation.openDrawer()}}/>  
-                    </Left>
-                </Header>   */}
-                {/* <Header style={{backgroundColor:'white'}}>
-                    <Left>
-                        <Icon name="menu" onPress={() => {this.props.navigation.openDrawer()}}/>  
-                    </Left>
-                </Header>   */}
                 <View style={{flex: 1, alignItems:'center', justifyContent:'center'}}>
-                    <Text>
+                    <Text style={{color: 'white'}}>
                         HomeScreen
                     </Text>   
                 </View>  
-                {/* <StatusBar backgroundColor="red" barStyle="dark-content"/>    */}
-                {/* <StatusBar backgroundColor="red" />    */}
             </View>
         );
     }
@@ -60,6 +66,5 @@ export default class HomeScreen extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1
-        //,paddingTop: Platform.OS === 'ios' ? 0 : Expo.Constants.statusBarHeight
     }
 });

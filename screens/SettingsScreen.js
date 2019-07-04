@@ -7,20 +7,47 @@ import {
     Platform,
     StatusBar
 } from "react-native";
-import { Header, Left, Right, Icon } from 'native-base'
+import { Header, Icon } from 'react-native-elements'
+//import { Header, Left, Right, Icon } from 'native-base'
 
 
 export default class SettingsScreen extends Component {
     render() {
         return (
             <View style={[s.global, styles.container]}>
-                <Header style={{backgroundColor:'light grey'}}>
-                    <Left>
-                        <Icon name="menu" onPress={() => {this.props.navigation.openDrawer()}}/>  
-                    </Left>
-                </Header>
+                <Header
+                     //backgroundColor='#282828'   
+                    statusBarProps={{ 
+                        backgroundColor:'#202020', 
+                        translucent:true, 
+                        barStyle:'light-content'
+                    }}
+
+                    //leftComponent={{ icon: 'menu', color: '#fff' }}
+                    //leftComponent={ <Icon name="menu" color='#fff' underlayColor='#282828' onPress={() => {this.props.navigation.openDrawer()}}/>}
+                    leftComponent={{ 
+                        icon: "menu",
+                        color:'#fff', 
+                        underlayColor:'#282828',
+                        onPress: this.props.navigation.openDrawer
+                    }}
+                    centerComponent={{ 
+                        text: 'BarHop', 
+                        style: { 
+                            color: '#fff', 
+                            fontSize: 25 
+                        } 
+                    }}
+                    //rightComponent={<Icon name="home" color='#fff' />}
+                    containerStyle={{
+                        backgroundColor: '#282828',
+                        borderBottomColor:'#282828', 
+                        borderBottomWidth:1 
+                      }}
+                    
+                />
                 <View style={{flex: 1, alignItems:'center', justifyContent:'center'}}>
-                    <Text>
+                    <Text style={{color: 'white'}}>
                         SettingsScreen
                     </Text>
                 </View>  
