@@ -16,10 +16,12 @@ export default class App extends React.Component {
     );
   }  
 }
- //style={s.global}
+
+// COOL COLOR    "#C2185B"
 const CustomDrawerComponent = (props) => (
   <SafeAreaView>
-    <View style={{ backgroundColor:'#282828', height: 150, alignItems:'center', justifyContent:'center', marginTop:Expo.Constants.statusBarHeight}}>
+    <View style={{ backgroundColor: "#202020", height: Expo.Constants.statusBarHeight}}/>
+    <View style={{ backgroundColor:'#282828', height: 150, alignItems:'center', justifyContent:'center'}}>
       <Image source={require('./assets/profile-photo.jpg')} style={{ height: 80, width: 80, borderRadius:60 }}/>
     </View>
     <ScrollView style={{backgroundColor:'#282828',height:Dimensions.get('window').height}}>
