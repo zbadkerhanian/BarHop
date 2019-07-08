@@ -27,14 +27,14 @@ export default class SettingsScreen extends Component {
                     //leftComponent={ <Icon name="menu" color='#fff' underlayColor='#282828' onPress={() => {this.props.navigation.openDrawer()}}/>}
                     leftComponent={{ 
                         icon: "menu",
-                        color:'#fff', 
+                        color:'#C2185B', 
                         underlayColor:'#282828',
                         onPress: this.props.navigation.openDrawer
                     }}
                     centerComponent={{ 
                         text: 'BarHop', 
                         style: { 
-                            color: '#fff', 
+                            color: '#C2185B', 
                             fontSize: 25 
                         } 
                     }}

@@ -10,7 +10,6 @@ export default class App extends React.Component {
     return (
       <View style={{flex: 1}}> 
         <AppContainer />
-        {/* <StatusBar backgroundColor="white" barStyle="dark-content"/> */}
       </View>
         
     );
@@ -35,9 +34,20 @@ const AppDrawerNavigator = createDrawerNavigator({
   Home: HomeScreen,
   Settings: SettingsScreen
   },{
-    contentComponent: CustomDrawerComponent
-  }
+    contentComponent: CustomDrawerComponent,
+    
+    contentOptions: {
 
+      labelStyle:{
+        color: '#ffffff'
+      },
+      
+      activeLabelStyle:{
+        color: '#C2185B'
+      }
+      
+    }
+  }
 )
 
 const AppContainer = createAppContainer(AppDrawerNavigator);
