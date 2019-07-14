@@ -1,14 +1,16 @@
 import s from '../styles/styles'
 import React, { Component } from "react";
-import Navigation from "react-navigation"
+import Navigation from "react-navigation";
 import { 
     View,
     Text,
     StyleSheet,
     Platform,
-    StatusBar
+    StatusBar,
+    TouchableOpacity
 } from "react-native";
-import { Header } from 'react-native-elements'
+import { Header } from 'react-native-elements';
+import {Utilities} from '../global_functions/Utilities'
 
 export default class HomeScreen extends Component {
 
@@ -22,27 +24,17 @@ export default class HomeScreen extends Component {
             },
             error: null
         }
+        _utilities = new Utilities();
     }
 
     componentDidMount(){
-        let geoOptions = {
-            enableHighAccuracy: true,
-            timeOut: 20000,
-            maximumAge: 60 * 60 * 24
-        };
+        
         this.setState({ready: false, error: null});
-        navigator.geolocation.getCurrentPosition(
-            this.geoSuccess,
-            this.geoFailure,
-            geoOptions
-        );
+        _utilities.getUserLocation(this.geoSuccess);
     }
 
-    // geoSuccess(position){
-    //     this.setState({ready: true})
-    // }
-
     geoSuccess = (position) => {
+        console.log(position);
         this.setState({ready: true});
         this.setState({
             ready: true,
@@ -52,20 +44,15 @@ export default class HomeScreen extends Component {
             }
         })
     }
-
-    // geoFailure(err){
-    //     this.setState({error: err.message});
-    // }
-
-    geoFailure = (err) => {
-        this.setState({error: err.message});
-    }
     
+    test(){
+        _utilities.getUserLocation(this.geoSuccess);
+    }
     
     render() {
 
         return (
-            <View style={[s.global, styles.container] }>  
+            <View style={s.global}>  
                 <Header
                     statusBarProps={{ 
                         backgroundColor:'#202020', 
@@ -98,6 +85,8 @@ export default class HomeScreen extends Component {
                     
                 />
                 <View style={styles.container}>
+                    <TouchableOpacity onPress={() => {this.test()}}><Text style={{paddingBottom: 40, color:"#ffffff", fontSize: 20}}>TEST</Text></TouchableOpacity>
+
                     { !this.state.ready && (
                         //when ready is false
                         <Text style={styles.text}>
@@ -110,15 +99,13 @@ export default class HomeScreen extends Component {
                         </Text>
                     )}
                     { this.state.ready && ( 
-                        <Text style = {styles.text}>
+                        <Text style={styles.text}>
                             Latitude: {this.state.where.lat}
                             {'\n'}
                             Longitude: {this.state.where.lng}
                         </Text>
-                        
                     )}
-
-                </View>  
+                </View>
             </View>
         );
     }
