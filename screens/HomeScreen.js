@@ -7,9 +7,10 @@ import {
     StyleSheet,
     Platform,
     StatusBar,
-    TouchableOpacity
+    TouchableOpacity,
+    TextInput
 } from "react-native";
-import { Header } from 'react-native-elements';
+import { Header, Icon } from 'react-native-elements';
 import {Utilities} from '../global_functions/Utilities'
 
 export default class HomeScreen extends Component {
@@ -84,6 +85,10 @@ export default class HomeScreen extends Component {
                       }}
                     
                 />
+                <View style={{flexDirection: 'row', padding: 10, margin: 10, backgroundColor: '#282828'}}>
+                    <Icon name='search' color='#fff' style={{marginRight: 10}}/>
+                    <TextInput placeholder='Search' style={{color: '#fff'}}/>
+                </View>
                 <View style={styles.container}>
                     <TouchableOpacity onPress={() => {this.test()}}><Text style={{paddingBottom: 40, color:"#ffffff", fontSize: 20}}>TEST</Text></TouchableOpacity>
 
@@ -115,8 +120,9 @@ export default class HomeScreen extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems:'center', 
-        justifyContent:'center'
+        alignItems:'center',
+        paddingTop: 150
+        //, justifyContent:'center'
     },
     text: {
         color: 'white',
