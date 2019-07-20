@@ -8,7 +8,9 @@ import {
     TouchableOpacity,
     TextInput
 } from 'react-native';
-import { Header, Icon } from 'react-native-elements';
+//import { Header, Icon } from 'react-native-elements';
+import { Header, Icon } from '../react-native-elements';
+
 import {Utilities} from '../global_functions/Utilities';
 
 import { CollapsibleHeaderScrollView } from 'react-native-collapsible-header-views';
@@ -36,7 +38,7 @@ export default class HomeScreen extends Component {
     }
 
     geoSuccess = (position) => {
-        console.log(position);
+        //console.log(position);
         this.setState({ready: true});
         this.setState({
             ready: true,
@@ -80,15 +82,24 @@ export default class HomeScreen extends Component {
                             //     } 
                             // }}
                             centerComponent={
-                                <View style={{flex:1, flexDirection:'row', padding: 10, marginVertical: 10, backgroundColor: '#202020'}}>
-                                    <Icon name='search' color='#fff' style={{marginRight: 10}}/>
-                                    <TextInput placeholder='Search' style={{color: '#fff', flex:1}}/>
+                                <View style={{flex:1, flexDirection:'row', paddingHorizontal:10, marginVertical: 10, backgroundColor: '#202020'}}>
+                                    <Icon name='search' color='#C2185B' containerStyle={{paddingTop: 5.15, marginRight: 10}}/>
+                                    <TextInput 
+                                        placeholder='Search' 
+                                        style={{
+                                            color: '#fff', 
+                                            flex:1, 
+                                            lineHeight: 35
+                                        }}
+                                        returnKeyType='go'
+                                        onSubmitEditing={() => {console.log('searched something');}}
+                                        />
                                 </View>
                             }
-                            rightComponent={{
-                                icon: 'search', 
-                                color: '#C2185B' 
-                            }}
+                            // rightComponent={{
+                            //     icon: 'search', 
+                            //     color: '#C2185B' 
+                            // }}
                             containerStyle={{
                                 backgroundColor: '#282828',
                                 borderBottomColor: '#282828', 
@@ -101,10 +112,7 @@ export default class HomeScreen extends Component {
                     statusBarHeight={Platform.OS === 'ios' ? 20 : 0}
                     disableHeaderSnap={true}
                 >
-                <View style={{flexDirection: 'row', padding: 10, margin: 10, backgroundColor: '#282828'}}>
-                    <Icon name='search' color='#fff' style={{marginRight: 10}}/>
-                    <TextInput placeholder='Search' style={{color: '#fff', flex:1}}/>
-                </View>
+                
                 <View style={styles.container}>
                     <TouchableOpacity onPress={() => {this.test()}}><Text style={{paddingBottom: 40, color:'#ffffff', fontSize: 20}}>TEST</Text></TouchableOpacity>
 
