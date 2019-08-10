@@ -22,10 +22,8 @@ export default class HomeScreen extends Component {
         super(props);
         this.state = {
             ready: false,
-            where: {
-                lat: null,
-                lng: null
-            },
+            lat: null,
+            lng: null,
             error: null
         }
         _utilities = new Utilities();
@@ -38,19 +36,28 @@ export default class HomeScreen extends Component {
     }
 
     geoSuccess = (position) => {
-        //console.log(position);
-        this.setState({ready: true});
         this.setState({
             ready: true,
-            where: {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            }
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
         })
     }
     
-    test(){
+    getGeo(){
+        console.log('run test'); 
         _utilities.getUserLocation(this.geoSuccess);
+        fetch('http://Barhopapi-env.sesiektkrm.us-west-1.elasticbeanstalk.com/api/Test/postGeo', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                lat: this.state.lat,
+                lng: this.state.lng,
+            }),
+        })
+        .then((response) => response.json()).then((result)=> console.log(result));
     }
     
     render() {
@@ -114,7 +121,7 @@ export default class HomeScreen extends Component {
                 >
                 
                 <View style={styles.container}>
-                    <TouchableOpacity onPress={() => {this.test()}}><Text style={{paddingBottom: 40, color:'#ffffff', fontSize: 20}}>TEST</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={() => {this.getGeo(); console.log('new state is .. '); console.log(this.state.lat); console.log(this.state.lng)}}><Text style={{paddingBottom: 40, color:'#ffffff', fontSize: 20}}>TEST</Text></TouchableOpacity>
 
                     { !this.state.ready && (
                         //when ready is false
@@ -129,9 +136,9 @@ export default class HomeScreen extends Component {
                     )}
                     { this.state.ready && ( 
                         <Text style={styles.text}>
-                            Latitude: {this.state.where.lat}
+                            Latitude: {this.state.lat}
                             {'\n'}
-                            Longitude: {this.state.where.lng}
+                            Longitude: {this.state.lng}
                         </Text>
                     )}
                 </View>

@@ -21,7 +21,9 @@ const CustomDrawerComponent = (props) => (
   <SafeAreaView>
     <View style={{ backgroundColor: "#202020", height: Expo.Constants.statusBarHeight}}/>
     <View style={{ backgroundColor:'#282828', height: 150, alignItems:'center', justifyContent:'center'}}>
-      <Image source={require('./assets/profile-photo.jpg')} style={{ height: 80, width: 80, borderRadius:60 }}/>
+      <View style={{alignItems:'center', justifyContent:'center', borderRadius:60,height:120,width:120, overflow:"hidden"}}>
+        <Image source={require('./assets/profile-photo.jpg')} style={{ height: 160, width: 160 }}/>
+      </View>
     </View>
     <ScrollView style={{backgroundColor:'#282828',height:Dimensions.get('window').height}}>
       <DrawerItems {...props} />
