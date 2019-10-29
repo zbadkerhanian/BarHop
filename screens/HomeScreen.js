@@ -15,7 +15,10 @@ export default class HomeScreen extends Component {
         super(props);
         this.state = {
             ready: false,
-            where: {lat: null,lng: null},
+            where: {
+                lat: null,
+                lng: null
+            }
             error: null
         }
         _utilities = new Utilities();
