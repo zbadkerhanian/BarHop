@@ -15,17 +15,20 @@ export default class HomeScreen extends Component {
         super(props);
         this.state = {
             ready: false,
-            where: {
-                lat: null,
-                lng: null
-            },
+            where: {lat: null,lng: null},
             error: null
         }
         _utilities = new Utilities();
     }
     componentDidMount(){
-        this.setState({ready: false, error: null});
-        _utilities.getUserLocation(this.geoSuccess);
+        let geoOptions={
+            enableHighAccuracy:true,
+        };
+        this.setState({ready:false})
+        navigator.geolocation.getCurrentPosition(this.geoSuccess,this.geoFailure,geoOptions);
+    }
+    geoFailure=(err)=>{
+
     }
     geoSuccess = (position) => {
         console.log(position);
@@ -99,10 +102,8 @@ export default class HomeScreen extends Component {
                     <View style={styles.container}>
                         <MapView
                             initialRegion={{
-                            //latitude: 37.78825,
-                            //longitude: -122.4324,
-                            latitude: this.lat,
-                            longitude: this.lng,
+                            latitude: this.state.where.lat,
+                            longitude: this.state.where.lng,
                             latitudeDelta: 0.0922,
                             longitudeDelta: 0.0421,
                             }}
