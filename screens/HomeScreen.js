@@ -4,7 +4,7 @@ import {View, Text, StyleSheet, Platform, TouchableOpacity, TextInput} from 'rea
 import { Header, Icon } from 'react-native-elements';
 import {Utilities} from '../global_functions/Utilities';
 import MapView from 'react-native-maps';
-import { Dimensions } from "react-native";
+import { Dimensions } from 'react-native';
 import { CollapsibleHeaderScrollView } from 'react-native-collapsible-header-views';
 //Screen width and height
 var width = Dimensions.get('window').width; 
@@ -16,25 +16,31 @@ export default class HomeScreen extends Component {
         this.state = {
             ready: false,
             where: {
-                lat: null,
-                lng: null
-            }
+                lat: 34,
+                lng: -118
+            },
             error: null
         }
         _utilities = new Utilities();
-    }
-    componentDidMount(){
+
+
         let geoOptions={
             enableHighAccuracy:true,
         };
-        this.setState({ready:false})
-        navigator.geolocation.getCurrentPosition(this.geoSuccess,this.geoFailure,geoOptions);
-    }
-    geoFailure=(err)=>{
+        navigator.geolocation.watchPosition(this.geoSuccess,this.geoFailure,geoOptions);
 
     }
+    componentDidMount(){
+        // let geoOptions={
+        //     enableHighAccuracy:true,
+        // };
+        this.setState({ready:false})
+        // navigator.geolocation.watchPosition(this.geoSuccess,this.geoFailure,geoOptions);
+    }
+    geoFailure=(err)=>{
+        console.log(err);
+    }
     geoSuccess = (position) => {
-        console.log(position);
         this.setState({ready: true});
         this.setState({
             ready: true,
@@ -105,12 +111,12 @@ export default class HomeScreen extends Component {
                     <View style={styles.container}>
                         <MapView
                             initialRegion={{
-                            latitude: this.state.where.lat,
-                            longitude: this.state.where.lng,
-                            latitudeDelta: 0.0922,
-                            longitudeDelta: 0.0421,
+                                latitude: this.state.where.lat,
+                                longitude: this.state.where.lng,
+                                latitudeDelta: 0.0922,
+                                longitudeDelta: 0.0421,
                             }}
-                            style={{width: width, height:300, marginVertical: 20,alignSelf: 'stretch',}}
+                            style={{width: width, height:300, marginVertical: 20, alignSelf: 'stretch'}}
                         />
                         <TouchableOpacity onPress={() => {this.test()}}><Text style={{paddingBottom: 40, color:'#ffffff', fontSize: 20}}>TEST</Text></TouchableOpacity>
                         
