@@ -1,12 +1,41 @@
 import s from './styles/styles'
+import * as Permissions from 'expo-permissions';
 import React from 'react';
 import { StyleSheet, Text, View, SafeAreaView, ScrollView, Dimensions, Image, Platform, StatusBar } from 'react-native'
 import {createDrawerNavigator, createAppContainer, DrawerItems} from 'react-navigation'
 import HomeScreen from './screens/HomeScreen'
 import SettingsScreen from './screens/SettingsScreen'
 
+import {PermissionsAndroid} from 'react-native';
+
+async function requestCameraPermission() {
+  try {
+    const granted = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.CAMERA,
+      {
+        title: 'Cool Photo App Camera Permission',
+        message:
+          'Cool Photo App needs access to your camera ' +
+          'so you can take awesome pictures.',
+        buttonNeutral: 'Ask Me Later',
+        buttonNegative: 'Cancel',
+        buttonPositive: 'OK',
+      },
+    );
+    if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+      console.log('You can use the camera');
+    } else {
+      console.log('Camera permission denied');
+    }
+  } catch (err) {
+    console.warn(err);
+  }
+}
+
 export default class App extends React.Component {
   render(){
+    //console.log(Permissions.getAsync(LOCATION));
+    requestCameraPermission();
     return (
       <View style={{flex: 1}}> 
         <AppContainer />

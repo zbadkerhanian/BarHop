@@ -1,4 +1,5 @@
 import s from '../styles/styles'
+import * as Google from 'expo-google-app-auth';
 import React, { Component } from 'react';
 import { 
     View,
@@ -15,6 +16,18 @@ import {Utilities} from '../global_functions/Utilities';
 
 import { CollapsibleHeaderScrollView } from 'react-native-collapsible-header-views';
 
+// var Uber = require('node-uber');
+
+// var uber = new Uber({
+//     client_id: 'vQI_ycPZAiK7i9Ru0_ZcqH2FSxaCPqdk',
+//     client_secret: 'AVdXwC0d9SZXU-WmKVslLEVt7kkCYUPs3CKrvzrr',
+//     server_token: 'SERVER_TOKEN',
+//     redirect_uri: 'REDIRECT URL',
+//     name: 'APP_NAME',
+//     language: 'en_US', // optional, defaults to en_US
+//     sandbox: true, // optional, defaults to false
+//     proxy: 'PROXY URL' // optional, defaults to none
+//   });
 
 export default class HomeScreen extends Component {
 
@@ -30,7 +43,6 @@ export default class HomeScreen extends Component {
     }
 
     componentDidMount(){
-        
         this.setState({ready: false, error: null});
         _utilities.getUserLocation(this.geoSuccess);
     }
@@ -121,12 +133,12 @@ export default class HomeScreen extends Component {
                 >
                 
                 <View style={styles.container}>
-                    <TouchableOpacity onPress={() => {this.getGeo(); console.log('new state is .. '); console.log(this.state.lat); console.log(this.state.lng)}}><Text style={{paddingBottom: 40, color:'#ffffff', fontSize: 20}}>TEST</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={() => {this.getGeo(); console.log('new state is .. '); console.log(this.state.lat); console.log(this.state.lng)}}><Text style={{paddingBottom: 40, color:'#C2185B', fontSize: 20}}>TEST</Text></TouchableOpacity>
 
                     { !this.state.ready && (
                         //when ready is false
                         <Text style={styles.text}>
-                            Geolocation in React Native
+                            Could not access location.
                         </Text>
                     )}
                     { this.state.error && (
@@ -156,7 +168,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems:'center', 
         justifyContent:'center',
-        height: 1000
+        height: 500
     },
     text: {
         color: 'white',
