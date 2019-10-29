@@ -1,4 +1,4 @@
-import s from './styles/styles'
+import s from './styles/global'
 import React from 'react';
 import { StyleSheet, Text, View, SafeAreaView, ScrollView, Dimensions, Image, Platform, StatusBar } from 'react-native'
 import {createDrawerNavigator, createAppContainer, DrawerItems} from 'react-navigation'

@@ -1,4 +1,4 @@
-import s from '../styles/styles'
+import s from '../styles/global'
 import React, { Component } from "react";
 import { 
     View,
