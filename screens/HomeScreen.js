@@ -11,31 +11,30 @@ var width = Dimensions.get('window').width;
 var height = Dimensions.get('window').height; 
 
 export default class HomeScreen extends Component {
+
+    
+
     constructor(props){
         super(props);
         this.state = {
             ready: false,
-            where: {
+            //where: {
                 lat: 0,
-                lng: 0
-            },
+                lng: 0,
+            //},
             error: null
         }
-        _utilities = new Utilities();
 
-
-        let geoOptions={
-            enableHighAccuracy:true,
-        };
-        navigator.geolocation.watchPosition(this.geoSuccess,this.geoFailure,geoOptions);
+       
+        
 
     }
     componentDidMount(){
-        // let geoOptions={
-        //     enableHighAccuracy:true,
-        // };
+        let geoOptions={
+            enableHighAccuracy:true,
+         };
         this.setState({ready:false})
-        // navigator.geolocation.watchPosition(this.geoSuccess,this.geoFailure,geoOptions);
+        navigator.geolocation.watchPosition(this.geoSuccess,this.geoFailure,geoOptions);
     }
     geoFailure=(err)=>{
         console.log(err);
@@ -51,7 +50,8 @@ export default class HomeScreen extends Component {
         })
     }
     test(){
-        _utilities.getUserLocation(this.geoSuccess);
+        console.log("hit test");
+        navigator.geolocation.watchPosition(this.geoSuccess,this.geoFailure,this.geoOptions);
     }
     render() {
         return (
@@ -117,7 +117,7 @@ export default class HomeScreen extends Component {
                                 latitudeDelta: 0.0922,
                                 longitudeDelta: 0.0421,
                             }}
-                            style={{width: width, height:300, marginVertical: 20, alignSelf: 'stretch'}}
+                            style={{width: width, height:300, marginVertical: 20}}
                         />
                         <TouchableOpacity onPress={() => {this.test()}}><Text style={{paddingBottom: 40, color:'#ffffff', fontSize: 20}}>TEST</Text></TouchableOpacity>
                         
@@ -135,9 +135,9 @@ export default class HomeScreen extends Component {
                         )}
                         { this.state.ready && ( 
                             <Text style={styles.text}>
-                                Latitude: {this.state.where.lat}
+                                Latitude: {this.state.lat}
                                 {'\n'}
-                                Longitude: {this.state.where.lng}
+                                Longitude: {this.state.lng}
                             </Text>
                         )}
                     </View>

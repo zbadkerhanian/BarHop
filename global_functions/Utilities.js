@@ -7,11 +7,7 @@ export class Utilities{
     };
 
     getUserLocation(callback){
-        navigator.geolocation.watchPosition(
-            callback,
-            this.geoFailure,
-            this.geoOptions
-        );
+        navigator.geolocation.watchPosition(callback,this.geoFailure,this.geoOptions);
     }
 
     geoFailure = (err) => {
