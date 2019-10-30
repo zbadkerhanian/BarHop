@@ -16,8 +16,8 @@ export default class HomeScreen extends Component {
         this.state = {
             ready: false,
             where: {
-                lat: 34,
-                lng: -118
+                lat: 0,
+                lng: 0
             },
             error: null
         }
@@ -44,10 +44,10 @@ export default class HomeScreen extends Component {
         this.setState({ready: true});
         this.setState({
             ready: true,
-            where: {
+            // where: {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
-            }
+            // }
         })
     }
     test(){
@@ -110,9 +110,10 @@ export default class HomeScreen extends Component {
                     </View>
                     <View style={styles.container}>
                         <MapView
+                            showsUserLocation={true}
                             initialRegion={{
-                                latitude: this.state.where.lat,
-                                longitude: this.state.where.lng,
+                                latitude: this.state.lat,
+                                longitude: this.state.lng,
                                 latitudeDelta: 0.0922,
                                 longitudeDelta: 0.0421,
                             }}
