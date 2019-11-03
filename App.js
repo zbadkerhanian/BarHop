@@ -36,8 +36,23 @@ export default class App extends React.Component {
           name: result.user.name,
           photoUrl: result.user.photoUrl
         });
-        name = result.user.name;
-        photoUrl = result.user.photoUrl;
+        
+        fetch('http://Barhopapi-env.sesiektkrm.us-west-1.elasticbeanstalk.com/api/User/postUser', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                firstName: result.user.givenName,
+                lastName: result.user.familyName,
+                email: result.user.email
+            }),
+        })
+        .then((response) => response.json()).then((result)=> console.log(result));
+        
+        // name = result.user.name;
+        // photoUrl = result.user.photoUrl;
       } else {
         console.log("cancelled");
       }
