@@ -1,5 +1,4 @@
 import s from '../styles/styles'
-import * as Google from 'expo-google-app-auth';
 import React, { Component } from 'react';
 import { 
     View,
@@ -7,14 +6,13 @@ import {
     StyleSheet,
     Platform,
     TouchableOpacity,
-    TextInput
+    TextInput,
+    Image
 } from 'react-native';
-//import { Header, Icon } from 'react-native-elements';
 import { Header, Icon } from '../react-native-elements';
-
 import {Utilities} from '../global_functions/Utilities';
-
 import { CollapsibleHeaderScrollView } from 'react-native-collapsible-header-views';
+import Constants from 'expo-constants';
 
 // var Uber = require('node-uber');
 
@@ -37,7 +35,9 @@ export default class HomeScreen extends Component {
             ready: false,
             lat: null,
             lng: null,
-            error: null
+            error: null,
+            name: props.name,
+            photoUrl: props.photoUrl
         }
         _utilities = new Utilities();
     }
@@ -93,13 +93,6 @@ export default class HomeScreen extends Component {
                                 onPress: this.props.navigation.openDrawer
                             }}
 
-                            // centerComponent={{ 
-                            //     text: 'BarHop', 
-                            //     style: { 
-                            //         color: '#C2185B', 
-                            //         fontSize: 25 
-                            //     } 
-                            // }}
                             centerComponent={
                                 <View style={{flex:1, flexDirection:'row', paddingHorizontal:10, marginVertical: 10, backgroundColor: '#202020'}}>
                                     <Icon name='search' color='#C2185B' containerStyle={{paddingTop: 5.15, marginRight: 10}}/>
@@ -115,10 +108,7 @@ export default class HomeScreen extends Component {
                                         />
                                 </View>
                             }
-                            // rightComponent={{
-                            //     icon: 'search', 
-                            //     color: '#C2185B' 
-                            // }}
+            
                             containerStyle={{
                                 backgroundColor: '#282828',
                                 borderBottomColor: '#282828', 
@@ -133,6 +123,12 @@ export default class HomeScreen extends Component {
                 >
                 
                 <View style={styles.container}>
+                    <View style={loginStyles.container}>
+                        {/* <Text style={loginStyles.header}>Welcome:{props.name}</Text>
+                        <Image style={loginStyles.image} source={{ uri: props.photoUrl }} /> */}
+                        <Text style={loginStyles.header}>Welcome:{this.state.name}</Text>
+                        <Image style={loginStyles.image} source={{ uri: this.state.photoUrl }} />
+                    </View>
                     <TouchableOpacity onPress={() => {this.getGeo(); console.log('new state is .. '); console.log(this.state.lat); console.log(this.state.lng)}}><Text style={{paddingBottom: 40, color:'#C2185B', fontSize: 20}}>TEST</Text></TouchableOpacity>
 
                     { !this.state.ready && (
@@ -175,3 +171,24 @@ const styles = StyleSheet.create({
         fontSize: 20
     }
 });
+
+const loginStyles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: "#fff",
+      alignItems: "center",
+      justifyContent: "center",
+      paddingTop: Platform.OS === 'ios' ? 0 : Constants.statusBarHeight
+    },
+    header: {
+      fontSize: 25
+    },
+    image: {
+      marginTop: 15,
+      width: 150,
+      height: 150,
+      borderColor: "rgba(0,0,0,0.2)",
+      borderWidth: 3,
+      borderRadius: 150
+    }
+  })
