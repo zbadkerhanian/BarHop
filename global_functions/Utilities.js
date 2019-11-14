@@ -1,3 +1,4 @@
+
 export class Utilities{
     geoOptions = {
         enableHighAccuracy: false,
@@ -16,5 +17,8 @@ export class Utilities{
 
     geoFailure = (err) => {
         //this.setState({error: err.message});
+        console.log("Geolocation WatchPosition failed.");
     }
+
+
 }
