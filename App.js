@@ -1,5 +1,5 @@
 import React from "react"
-import { StyleSheet, Text, View, Image, Button, SafeAreaView, ScrollView, Dimensions, Platform} from 'react-native'
+import { StyleSheet, Text, View, Image, Button, SafeAreaView, ScrollView, Dimensions, Platform, AsyncStorage} from 'react-native'
 import {createDrawerNavigator, createAppContainer, DrawerItems} from 'react-navigation'
 import HomeScreen from './screens/HomeScreen'
 import SettingsScreen from './screens/SettingsScreen'
@@ -7,8 +7,7 @@ import SettingsScreen from './screens/SettingsScreen'
 import * as Expo from "expo"
 import Constants from 'expo-constants'
 
-var name;
-var photoUrl;
+
 
 export default class App extends React.Component {
   
@@ -17,9 +16,16 @@ export default class App extends React.Component {
     super(props)
     this.state = {
       signedIn: false,
-      name: "",
-      photoUrl: ""
+      // signedIn: (AsyncStorage.getItem("accessToken")) ? true : false,
+      name: global.name,
+      photoUrl: global.photoUrl
     }
+
+    // if(window.sessionStorage.getItem("idToken")){
+    //   this.setState({
+    //     signedIn: true
+    //   })
+    // }
   }
   signIn = async () => {
     try {
@@ -31,29 +37,46 @@ export default class App extends React.Component {
       })
 
       if (result.type === "success") {
+        console.log("accessToken: " + result.accessToken);
+        console.log("idToken: " + result.idToken);
         this.setState({
           signedIn: true,
           name: result.user.name,
           photoUrl: result.user.photoUrl
         });
-        
-        fetch('http://Barhopapi-env.sesiektkrm.us-west-1.elasticbeanstalk.com/api/User/postUser', {
+
+        fetch('http://barhopapi-env.sesiektkrm.us-west-1.elasticbeanstalk.com/api/Users/postUser', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
+                idToken: result.accessToken,
                 firstName: result.user.givenName,
                 lastName: result.user.familyName,
                 email: result.user.email
             }),
         })
         .then((response) => response.json()).then((result)=> console.log(result));
+
+
+        // window.localStorage.setItem("idToken", result.idToken);
+
+        try {
+          // await AsyncStorage.setItem('idToken', result.idToken);
+          await AsyncStorage.setItem('accessToken', result.accessToken);
+        } catch (error) {
+          // Error saving data
+          console.log("error saving: " + error);
+        }
+
         
-        // name = result.user.name;
-        // photoUrl = result.user.photoUrl;
-      } else {
+
+        global.name = result.user.name;
+        global.photoUrl = result.user.photoUrl;
+      } 
+      else {
         console.log("cancelled");
       }
     } catch (e) {
@@ -122,7 +145,8 @@ const CustomDrawerComponent = (props) => (
     <View style={{ backgroundColor: "#202020", height: Constants.statusBarHeight}}/>
     <View style={{ backgroundColor:'#282828', height: 150, alignItems:'center', justifyContent:'center'}}>
       <View style={{alignItems:'center', justifyContent:'center', borderRadius:60,height:120,width:120, overflow:"hidden"}}>
-        <Image source={require('./assets/profile-photo.jpg')} style={{ height: 160, width: 160 }}/>
+        {/* <Image source={require('./assets/profile-photo.jpg')} style={{ height: 160, width: 160 }}/> */}
+        <Image source={{ uri: global.photoUrl }} style={{ height: 160, width: 160 }}/>
       </View>
     </View>
     <ScrollView style={{backgroundColor:'#282828',height:Dimensions.get('window').height}}>

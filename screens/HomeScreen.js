@@ -123,12 +123,12 @@ export default class HomeScreen extends Component {
                 >
                 
                 <View style={styles.container}>
-                    <View style={loginStyles.container}>
+                    {/* <View style={styles.container}> */}
                         {/* <Text style={loginStyles.header}>Welcome:{props.name}</Text>
                         <Image style={loginStyles.image} source={{ uri: props.photoUrl }} /> */}
-                        <Text style={loginStyles.header}>Welcome:{this.state.name}</Text>
-                        <Image style={loginStyles.image} source={{ uri: this.state.photoUrl }} />
-                    </View>
+                        <Text style={styles.text}>Welcome: {global.name}</Text>
+                        {/* <Image style={loginStyles.image} source={{ uri: global.photoUrl }} /> */}
+                    {/* </View> */}
                     <TouchableOpacity onPress={() => {this.getGeo(); console.log('new state is .. '); console.log(this.state.lat); console.log(this.state.lng)}}><Text style={{paddingBottom: 40, color:'#C2185B', fontSize: 20}}>TEST</Text></TouchableOpacity>
 
                     { !this.state.ready && (
@@ -168,7 +168,8 @@ const styles = StyleSheet.create({
     },
     text: {
         color: 'white',
-        fontSize: 20
+        fontSize: 20,
+        margin: 20
     }
 });
 
