@@ -6,6 +6,7 @@ import {Utilities} from '../global_functions/Utilities';
 import MapView from 'react-native-maps';
 import { Dimensions } from 'react-native';
 import { CollapsibleHeaderScrollView } from 'react-native-collapsible-header-views';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 //Screen width and height
 var width = Dimensions.get('window').width; 
 var height = Dimensions.get('window').height; 
@@ -24,10 +25,6 @@ export default class HomeScreen extends Component {
             //},
             error: null
         }
-
-       
-        
-
     }
     componentDidMount(){
         let geoOptions={
@@ -101,14 +98,63 @@ export default class HomeScreen extends Component {
                     statusBarHeight={Platform.OS === 'ios' ? 20 : 0}
                     disableHeaderSnap={true}
                 >
-                    <View style={{flexDirection: 'row', padding: 10, margin: 10, backgroundColor: '#282828'}}>
-                        <Icon name='search' color='#fff' style={{marginRight: 10}}/>
-                        <TextInput placeholder='Search' style={{color: '#fff', flex:1}}/>
-                    </View>
-                    <View >
-                        
-                    </View>
+
                     <View style={styles.container}>
+                    <GooglePlacesAutocomplete
+                        placeholder = 'Search'
+                        minLength   = {2}       // minimum length of text to search
+                        autoFocus
+                        returnKeyType     = {'search'}  // Can be left out for default return key https://facebook.github.io/react-native/docs/textinput.html#returnkeytype
+                        listViewDisplayed = 'auto'      // true/false/undefined
+                        fetchDetails= {true}
+                        // renderDescription={(row) => row.description} // custom description render
+                        onPress = {(details = null) => { // 'details' is provided when fetchDetails = true
+                            
+                            console.log(details);
+                            
+
+                        }}
+                        textInputProps={{
+                            onChangeText: (location) => this.setState({ location })
+                        }}
+                        getDefaultValue={() => {
+                            return '' // text input default value
+                        }}
+                        query={{
+                            // available options: https://developers.google.com/places/web-service/autocomplete
+                            key     : 'AIzaSyAJmqXbU1t40tXd6Qhaul_yiWhzhfoazG8',
+                            language: 'en',                                        // language of the results
+                            types   : '(cities)'                                   // default: 'geocode'
+                        }}
+                        styles={{
+                            description: {
+                                fontWeight: 'bold'
+                            },
+                            predefinedPlacesDescription: {
+                            color: '#1faadb'
+                            },
+                            listView: {                           
+                                backgroundColor: 'white',
+                                text           : 'white'
+                            },
+                        }}
+
+                        currentLocation // Will add a 'Current location' button at the top of the predefined places list
+                        currentLocationLabel        = 'Current location'
+                        nearbyPlacesAPI             = 'GooglePlacesSearch'  // Which API to use: GoogleReverseGeocoding or GooglePlacesSearch
+                        GoogleReverseGeocodingQuery = {{
+                            // available options for GoogleReverseGeocoding API : https://developers.google.com/maps/documentation/geocoding/intro
+                        }}
+                        GooglePlacesSearchQuery={{
+                            // available options for GooglePlacesSearch API : https://developers.google.com/places/web-service/search
+                            rankby: 'distance',
+                            types : "night_club"
+                        }}
+
+                        filterReverseGeocodingByTypes = {['locality', 'administrative_area_level_3']}  // filter the reverse geocoding results by types - ['locality', 'administrative_area_level_3'] if you want to display only cities
+                        enablePoweredByContainer      = {false}
+                        debounce                      = {200}                                          // debounce the requests in ms. Set to 0 to remove debounce. By default 0ms.
+                        />
                         <MapView
                             showsUserLocation={true}
                             initialRegion={{
