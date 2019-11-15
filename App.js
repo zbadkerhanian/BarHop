@@ -16,8 +16,8 @@ export default class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      signedIn: false,
-      // signedIn: (AsyncStorage.getItem("accessToken")) ? true : false,
+      //signedIn: false,
+      signedIn: (AsyncStorage.getItem("accessToken")) ? true : false,
       name: global.name,
       photoUrl: global.photoUrl
     }
