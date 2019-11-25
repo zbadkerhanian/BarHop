@@ -4,15 +4,16 @@ import { StyleSheet, Text, View, Image, Button, SafeAreaView, ScrollView, Dimens
 import {createDrawerNavigator, createAppContainer, DrawerItems} from 'react-navigation'
 import HomeScreen from './screens/HomeScreen'
 import SettingsScreen from './screens/SettingsScreen'
-
+import NotificationsScreen from './screens/NotificationsScreen'
+import AccountScreen from './screens/AccountScreen'
+import PrivacyScreen from './screens/PrivacyScreen'
+import SecurityScreen from './screens/SecurityScreen'
+import FriendsListScreen from './screens/FriendsListScreen'
 import * as Expo from "expo"
 import Constants from 'expo-constants'
 
-
-
 export default class App extends React.Component {
   
-
   constructor(props) {
     super(props)
     this.state = {
@@ -156,17 +157,68 @@ const CustomDrawerComponent = (props) => (
     {/* <StatusBar backgroundColor="white" barStyle="dark-content"/> */}
   </SafeAreaView>  
 )
-
+class Hidden extends React.Component {
+  render() {
+    return null;
+  }
+}
 const AppDrawerNavigator = createDrawerNavigator({
-    Home: HomeScreen,
-    Settings: SettingsScreen
+    Home: {
+      screen:HomeScreen,
+      navigationOptions:{
+        drawerIcon:(
+            <Image source={require('./assets/home-icon-selected.png')} 
+                            style={{ height: 25, width: 25 }}/>
+        )
+    }},
+    Friends: {
+      screen: FriendsListScreen,
+      navigationOptions:{
+        drawerIcon:(
+            <Image source={require('./assets/friends-icon-selected.png')} 
+                            style={{ height: 25, width: 25 }}/>
+        )
+    }},
+    Settings: {
+      screen: SettingsScreen,
+      navigationOptions:{
+        drawerIcon:(
+            <Image source={require('./assets/setting-icon-selected.png')} 
+                            style={{ height: 25, width: 25 }}/>
+        )
+    }},
+    Notifications: {
+      screen: NotificationsScreen,
+      navigationOptions: {
+        drawerLabel: <Hidden />
+      }
+    },
+    Account: {
+      screen: AccountScreen,
+      navigationOptions: {
+        drawerLabel: <Hidden />
+      }
+    },
+    Privacy: {
+      screen: PrivacyScreen,
+      navigationOptions: {
+        drawerLabel: <Hidden />
+      }
+    },
+    Security: {
+      screen: SecurityScreen,
+      navigationOptions: {
+        drawerLabel: <Hidden />
+      }
+    }
   },{
     contentComponent: CustomDrawerComponent,
     
     contentOptions: {
 
       labelStyle:{
-        color: '#ffffff'
+        color: '#ffffff',
+        marginLeft:0
       },
       
       activeLabelStyle:{
@@ -177,7 +229,12 @@ const AppDrawerNavigator = createDrawerNavigator({
   }
 )
 
+
+
 const AppContainer = createAppContainer(AppDrawerNavigator);
+//const AppContainer = createAppContainer(Navigator);
+
+
 
 const styles = StyleSheet.create({
   container: {

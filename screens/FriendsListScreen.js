@@ -7,14 +7,14 @@ import {
     Platform,
     StatusBar,
     Switch,
-    TouchableOpacity
+    TouchableOpacity,
+    
 } from "react-native";
 import { Header, Icon } from 'react-native-elements'
 //import { Header, Left, Right, Icon } from 'native-base'
 
-import NotificationsScreen from './NotificationsScreen'
 
-export default class SettingsScreen extends Component {
+export default class FriendsListScreen extends Component {
     state={
         switchNotifications:false
     }
@@ -54,29 +54,11 @@ export default class SettingsScreen extends Component {
                 />
                 <View style={{flex: 1,flexDirection:'row'}}>
                     <View style={{flex:4,flexDirection:'column'}}>
-                        <TouchableOpacity
-                            onPress={() => this.props.navigation.navigate('Notifications')}
-                            
-                            >
-                            <Text style={styles.text}>Notifications</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            onPress={() => this.props.navigation.navigate('Privacy')}
-                            >
-                            <Text style={styles.text}>Privacy</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            onPress={() => this.props.navigation.navigate('Security')}
-                            >
-                            <Text style={styles.text}>Security</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            onPress={() => this.props.navigation.navigate('Account')}
-                            >
-                            <Text style={styles.text}>Account</Text>
-                        </TouchableOpacity>
+                            <Text style={styles.text}>Friends List</Text>
                     </View>
                     <View style={{flex:1,flexDirection:'column'}}>
+                        <Switch trackColor={{true: '#C2185B', false: 'grey'}} thumbColor="white" style={styles.switch} value={this.state.switchNotifications} 
+                            onValueChange={(switchNotifications) => this.setState({switchNotifications})}/>
                     </View>    
                 </View> 
                 {/* <StatusBar backgroundColor="white" barStyle="dark-content"/> */}

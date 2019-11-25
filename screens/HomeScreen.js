@@ -1,4 +1,5 @@
 import s from '../styles/global'
+
 import React, { Component } from 'react';
 import MapView from 'react-native-maps';
 import { Dimensions } from 'react-native';
@@ -12,7 +13,8 @@ import {
     Platform,
     TouchableOpacity,
     TextInput,
-    Image
+    Image,
+    FlatList
 } from 'react-native';
 import { Header, Icon } from '../react-native-elements';
 import {Utilities} from '../global_functions/Utilities';
@@ -20,6 +22,27 @@ import { CollapsibleHeaderScrollView } from 'react-native-collapsible-header-vie
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import Constants from 'expo-constants';
 
+const LocationInfo = [
+    {
+      name: 'Bar1',
+      rating:'1',
+      cost:"$",
+      distance:'1.1',
+
+    },
+    {
+      name: 'Bar2',
+      rating:'2',
+      cost:'$$',
+      distance:'1.2',
+    },
+    {
+        name: 'Bar3',
+        rating:'3',
+        cost:'$$$',
+        distance:'1.3',  
+    },
+  ];
 
 export default class HomeScreen extends Component {
     constructor(props){
@@ -190,6 +213,41 @@ export default class HomeScreen extends Component {
                         enablePoweredByContainer      = {false}
                         debounce                      = {200}                                          // debounce the requests in ms. Set to 0 to remove debounce. By default 0ms.
                         />
+                <View>
+                    <FlatList
+                    data={LocationInfo}
+                    showsVerticalScrollIndicator={false}
+                    renderItem={({item}) =>
+                    <TouchableOpacity
+                    onPress={() => this.props.navigation.navigate('Settings')}
+                >
+                    <View style={{flex: 1, flexDirection: 'column',marginVertical:5}}>
+                        <View style={{flex:1,backgroundColor: 'blue'}}>
+                            <Text style={styles.text}>{item.name}</Text>
+                        </View> 
+                        <View >
+                            <Image source={require('./../assets/bar-stock.jpg')} 
+                            style={{ height: 100, width: width }}/>
+                        </View> 
+                        <View style={{flex: 1,flexDirection:'row'}}>
+                            <View style={{flex:1,flexDirection:'column',backgroundColor: 'lightblue'}}>
+                                <Text style={styles.text}>{item.rating}</Text>
+                            </View>
+                            <View style={{flex:1,flexDirection:'column',backgroundColor: 'steelblue'}}>
+                                <Text style={styles.text}>{item.cost}</Text>
+                            </View>
+                            <View style={{flex:1,flexDirection:'column',backgroundColor: 'blue'}}>
+                                <Text style={styles.text}>{item.distance}</Text>
+                            </View>   
+                        </View> 
+                    </View>
+                </TouchableOpacity>
+                    }
+                    keyExtractor={item => item.name}
+                    />
+                </View>
+                
+                
                 <View style={styles.container}>
                     {/* <View style={styles.container}> */}
                         {/* <Text style={loginStyles.header}>Welcome:{props.name}</Text>
@@ -237,8 +295,8 @@ const styles = StyleSheet.create({
     text: {
         color: 'white',
         fontSize: 20,
-        margin: 20
-    }
+        margin: 5
+    },
 });
 
 const loginStyles = StyleSheet.create({
@@ -259,5 +317,15 @@ const loginStyles = StyleSheet.create({
       borderColor: "rgba(0,0,0,0.2)",
       borderWidth: 3,
       borderRadius: 150
+    },
+    flatview: {
+      justifyContent: 'center',
+      paddingTop: 30,
+      borderRadius: 2,
+    },
+    text: {
+        color: 'white',
+        fontSize: 20,
+        margin: 5
     }
 });
