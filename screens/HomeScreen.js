@@ -1,10 +1,10 @@
 import s from '../styles/global'
 import React, { Component } from 'react';
 import MapView from 'react-native-maps';
-import { Dimensions } from 'react-native';
+//import { Dimensions } from 'react-native';
 //Screen width and height
-var width = Dimensions.get('window').width; 
-var height = Dimensions.get('window').height; 
+//var width = Dimensions.get('window').width; 
+//var height = Dimensions.get('window').height; 
 import { 
     View,
     Text,
@@ -12,7 +12,10 @@ import {
     Platform,
     TouchableOpacity,
     TextInput,
-    Image
+    SafeAreaView,
+    ScrollView,
+    Image,
+    Dimensions
 } from 'react-native';
 import { Header, Icon } from '../react-native-elements';
 import {Utilities} from '../global_functions/Utilities';
@@ -20,6 +23,8 @@ import { CollapsibleHeaderScrollView } from 'react-native-collapsible-header-vie
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import Constants from 'expo-constants';
 
+const { height, width } = Dimensions.get('window')
+import StarRating from 'react-native-star-rating'
 
 export default class HomeScreen extends Component {
     constructor(props){
@@ -97,7 +102,7 @@ export default class HomeScreen extends Component {
                             statusBarProps={{ 
                                 backgroundColor: '#202020', 
                                 translucent: true, 
-                                barStyle: 'light-content'
+                                barStyle: 'dark-content'
                             }}
 
                             leftComponent={{ 
@@ -108,14 +113,14 @@ export default class HomeScreen extends Component {
                             }}
 
                             centerComponent={
-                                <View style={{flex:1, flexDirection:'row', paddingHorizontal:10, marginVertical: 10, backgroundColor: '#202020'}}>
-                                    <Icon name='search' color='#C2185B' containerStyle={{paddingTop: 5.15, marginRight: 10}}/>
+                                <View style={{flex:1, flexDirection:'row', paddingHorizontal:10, marginVertical: 8, backgroundColor: '#202020'}}>
+                                    <Icon name='search' color='#C2185B' containerStyle={{paddingTop: 1, marginRight: 10}}/>
                                     <TextInput 
                                         placeholder='Search' 
                                         style={{
                                             color: '#fff', 
                                             flex:1, 
-                                            lineHeight: 35
+                                            lineHeight: 20
                                         }}
                                         returnKeyType='go'
                                         onSubmitEditing={() => {console.log('searched something');}}
@@ -217,6 +222,176 @@ export default class HomeScreen extends Component {
                             Longitude: {this.state.lng}
                         </Text>
                     )}
+                </View>
+
+                
+                    <SafeAreaView>
+                        <ScrollView scrollEventThrottle={16}>
+                            <View>
+                                <Text style={styles.text}>
+                                    What can we help you find?
+                                </Text>
+
+                                <View style={{height: 130, marginTop: 20, marginBottom: 30}}>
+                                    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                                        <View style={{height: 130, width: 130, marginLeft: 20,
+                                            borderWidth: 0.5, borderColor: '#dddddd' }}>
+                                            <View style={{ flex: 2}}>
+                                                <Image source={require('../assets/a.jpg')}
+                                                    style={{ flex: 1, width: null, height: null, 
+                                                    resizeMode: 'cover'}}
+                                                    />
+                                            </View>
+                                            <View style={{ flex: 1, paddingLeft: 10, paddingTop: 10}}>
+                                                <Text style={{ color: 'white' }}>Home</Text>
+                                            </View>
+                                        </View>
+
+                                        <View style={{height: 130, width: 130, marginLeft: 20,
+                                            borderWidth: 0.5, borderColor: '#dddddd' }}>
+                                            <View style={{ flex: 2}}>
+                                                <Image source={require('../assets/b.jpg')}
+                                                    style={{ flex: 1, width: null, height: null, 
+                                                    resizeMode: 'cover'}}
+                                                    />
+                                            </View>
+                                            <View style={{ flex: 1, paddingLeft: 10, paddingTop: 10}}>
+                                                <Text style={{ color: 'white' }}>Experiences</Text>
+                                            </View>
+                                        </View>
+
+                                        <View style={{height: 130, width: 130, marginLeft: 20,
+                                            borderWidth: 0.5, borderColor: '#dddddd' }}>
+                                            <View style={{ flex: 2}}>
+                                                <Image source={require('../assets/c.jpg')}
+                                                    style={{ flex: 1, width: null, height: null, 
+                                                    resizeMode: 'cover'}}
+                                                    />
+                                            </View>
+                                            <View style={{ flex: 1, paddingLeft: 10, paddingTop: 10}}>
+                                                <Text style={{ color: 'white' }}>Restaurant</Text>
+                                            </View>
+                                        </View>
+
+                                    </ScrollView>
+                                </View>
+
+                                <View style={{marginTop: 20, paddingHorizontal: 20}}>
+                                    <Text style={{ fontSize: 24, fontWeight: '700', color: 'white'}}>
+                                        Introducing Plus
+                                    </Text>
+                                    <Text style={{ fontWeight: '100', marginTop: 10, color: 'white'}}>
+                                        A new selection of homes verified for quality & comfort
+                                    </Text>
+                                    <View style={{width:width-40, height: 200, marginTop: 20}}>
+                                        <Image style={{flex: 1, height: null, width: null, 
+                                            resizeMode: 'cover', borderRadius: 5, borderWidth: 1,
+                                            borderColor: '#dddddd'}}
+                                            source={require('../assets/a.jpg')}
+                                        />
+                                    </View>
+                                </View>
+                            </View>
+
+                            <View style={{ marginTop: 40}}>
+                                <Text style={{ fontSize: 24, fontWeight: '700', paddingHorizontal: 20, 
+                                    color: 'white'}}>
+                                    Home around the world
+                                </Text>
+                                <View style={{ paddingHorizontal: 20, marginTop: 20, flexDirection: 'row',
+                                    flexWrap: 'wrap', justifyContent: 'space-between' , marginBottom: 10}}>
+                                        
+                                    <View style={{width:width/2-30, height:width/2-30, borderWidth:0.5, 
+                                        borderColor: '#dddddd'}}>
+                                        <View style={{ flex: 1 }}>
+                                            <Image style={{ flex:1, width:null, height:null, 
+                                                resizeMode:'cover' }}
+                                                source={require('../assets/a.jpg')}
+                                            />
+                                        </View>
+                                        <View style={{ flex: 1, alignItems: 'flex-start', 
+                                            justifyContent: 'space-evenly', paddingLeft: 10 }}>
+                                            <Text style={{ fontSize: 10, color: 'white'}}>
+                                                PRIVATE ROOM - 2 BEDS
+                                            </Text>
+                                            <Text style={{ fontSize: 12, fontWeight: 'bold', color: 'white'}}>
+                                                The Cozy Palace
+                                            </Text>
+                                            <Text style={{ fontSize: 10, color: 'white'}}>
+                                                $82
+                                            </Text>
+                                            <StarRating
+                                                disable={true}
+                                                maxStars={5}
+                                                rating={4}
+                                                starSize={10}
+                                            />
+                                        </View>
+                                    </View>
+
+                                    <View style={{width:width/2-30, height:width/2-30, borderWidth:0.5, 
+                                        borderColor: '#dddddd'}}>
+                                        <View style={{ flex: 1 }}>
+                                            <Image style={{ flex:1, width:null, height:null, 
+                                                resizeMode:'cover' }}
+                                                source={require('../assets/a.jpg')}
+                                            />
+                                        </View>
+                                        <View style={{ flex: 1, alignItems: 'flex-start', 
+                                            justifyContent: 'space-evenly', paddingLeft: 10 }}>
+                                            <Text style={{ fontSize: 10, color: 'white'}}>
+                                                PRIVATE ROOM - 2 BEDS
+                                            </Text>
+                                            <Text style={{ fontSize: 12, fontWeight: 'bold', color: 'white'}}>
+                                                The Cozy Palace
+                                            </Text>
+                                            <Text style={{ fontSize: 10, color: 'white'}}>
+                                                $82
+                                            </Text>
+                                            <StarRating
+                                                disable={true}
+                                                maxStars={5}
+                                                rating={4}
+                                                starSize={10}
+                                            />
+                                        </View>
+                                    </View>
+
+                                    <View style={{width:width/2-30, height:width/2-30, borderWidth:0.5, 
+                                        borderColor: '#dddddd'}}>
+                                        <View style={{ flex: 1 }}>
+                                            <Image style={{ flex:1, width:null, height:null, 
+                                                resizeMode:'cover' }}
+                                                source={require('../assets/a.jpg')}
+                                            />
+                                        </View>
+                                        <View style={{ flex: 1, alignItems: 'flex-start', 
+                                            justifyContent: 'space-evenly', paddingLeft: 10 }}>
+                                            <Text style={{ fontSize: 10, color: 'white'}}>
+                                                PRIVATE ROOM - 2 BEDS
+                                            </Text>
+                                            <Text style={{ fontSize: 12, fontWeight: 'bold', color: 'white'}}>
+                                                The Cozy Palace
+                                            </Text>
+                                            <Text style={{ fontSize: 10, color: 'white'}}>
+                                                $82
+                                            </Text>
+                                            <StarRating
+                                                disable={true}
+                                                maxStars={5}
+                                                rating={4}
+                                                starSize={10}
+                                            />
+                                        </View>
+                                    </View>
+
+                                </View>
+                            </View>
+                        </ScrollView>
+                    </SafeAreaView>
+                    
+                <View>
+
                 </View>
                 </CollapsibleHeaderScrollView>
                 
