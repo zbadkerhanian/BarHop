@@ -277,7 +277,7 @@ export default class HomeScreen extends Component {
                                 </View>
 
                                 <View style={{marginTop: 20, paddingHorizontal: 20}}>
-                                    <Text style={{ fontSize: 24, fontWeight: '700', color: 'white'}}>
+                                    <Text style={styles.title}>
                                         Introducing Plus
                                     </Text>
                                     <Text style={{ fontWeight: '100', marginTop: 10, color: 'white'}}>
@@ -293,97 +293,130 @@ export default class HomeScreen extends Component {
                                 </View>
                             </View>
 
-                            <View style={{ marginTop: 40}}>
-                                <Text style={{ fontSize: 24, fontWeight: '700', paddingHorizontal: 20, 
-                                    color: 'white'}}>
+                            <View style={{ marginTop: 40, 
+                                paddingHorizontal: 20
+                                }}>
+                                <Text style={styles.title}>
                                     Home around the world
                                 </Text>
-                                <View style={{ paddingHorizontal: 20, marginTop: 20, flexDirection: 'row',
-                                    flexWrap: 'wrap', justifyContent: 'space-between' , marginBottom: 10}}>
+                                <View style={{ marginTop: 20, flexDirection: 'row',
+                                    flexWrap: 'wrap', 
+                                    // justifyContent: 'space-between' , 
+                                    marginBottom: 10}}>
                                         
-                                    <View style={{width:width/2-30, height:width/2-30, borderWidth:0.5, 
-                                        borderColor: '#dddddd'}}>
+                                    <View style={styles.placeContainer}>
                                         <View style={{ flex: 1 }}>
                                             <Image style={{ flex:1, width:null, height:null, 
-                                                resizeMode:'cover' }}
+                                                resizeMode:'cover' 
+                                            }}
                                                 source={require('../assets/a.jpg')}
                                             />
                                         </View>
-                                        <View style={{ flex: 1, alignItems: 'flex-start', 
-                                            justifyContent: 'space-evenly', paddingLeft: 10 }}>
+                                        <View style={{ height: 70, alignItems: 'flex-start', 
+                                            justifyContent: 'space-evenly', 
+                                            paddingLeft: 10 }}>
                                             <Text style={{ fontSize: 10, color: 'white'}}>
                                                 PRIVATE ROOM - 2 BEDS
                                             </Text>
                                             <Text style={{ fontSize: 12, fontWeight: 'bold', color: 'white'}}>
                                                 The Cozy Palace
                                             </Text>
-                                            <Text style={{ fontSize: 10, color: 'white'}}>
-                                                $82
-                                            </Text>
                                             <StarRating
                                                 disable={true}
+                                                fullStarColor="gold"
                                                 maxStars={5}
                                                 rating={4}
-                                                starSize={10}
+                                                starSize={15}
                                             />
                                         </View>
                                     </View>
 
-                                    <View style={{width:width/2-30, height:width/2-30, borderWidth:0.5, 
-                                        borderColor: '#dddddd'}}>
+
+                                    <View style={styles.placeContainer}>
                                         <View style={{ flex: 1 }}>
                                             <Image style={{ flex:1, width:null, height:null, 
-                                                resizeMode:'cover' }}
+                                                resizeMode:'cover' 
+                                            }}
                                                 source={require('../assets/a.jpg')}
                                             />
                                         </View>
-                                        <View style={{ flex: 1, alignItems: 'flex-start', 
-                                            justifyContent: 'space-evenly', paddingLeft: 10 }}>
+                                        <View style={{ height: 70, alignItems: 'flex-start', 
+                                            justifyContent: 'space-evenly', 
+                                            paddingLeft: 10 }}>
                                             <Text style={{ fontSize: 10, color: 'white'}}>
                                                 PRIVATE ROOM - 2 BEDS
                                             </Text>
                                             <Text style={{ fontSize: 12, fontWeight: 'bold', color: 'white'}}>
                                                 The Cozy Palace
                                             </Text>
-                                            <Text style={{ fontSize: 10, color: 'white'}}>
-                                                $82
-                                            </Text>
                                             <StarRating
                                                 disable={true}
+                                                fullStarColor="gold"
                                                 maxStars={5}
                                                 rating={4}
-                                                starSize={10}
+                                                starSize={15}
                                             />
                                         </View>
                                     </View>
 
-                                    <View style={{width:width/2-30, height:width/2-30, borderWidth:0.5, 
-                                        borderColor: '#dddddd'}}>
+
+
+                                    <View style={styles.placeContainer}>
                                         <View style={{ flex: 1 }}>
                                             <Image style={{ flex:1, width:null, height:null, 
-                                                resizeMode:'cover' }}
+                                                resizeMode:'cover' 
+                                            }}
                                                 source={require('../assets/a.jpg')}
                                             />
                                         </View>
-                                        <View style={{ flex: 1, alignItems: 'flex-start', 
-                                            justifyContent: 'space-evenly', paddingLeft: 10 }}>
+                                        <View style={{ height: 70, alignItems: 'flex-start', 
+                                            justifyContent: 'space-evenly', 
+                                            paddingLeft: 10 }}>
                                             <Text style={{ fontSize: 10, color: 'white'}}>
                                                 PRIVATE ROOM - 2 BEDS
                                             </Text>
                                             <Text style={{ fontSize: 12, fontWeight: 'bold', color: 'white'}}>
                                                 The Cozy Palace
                                             </Text>
-                                            <Text style={{ fontSize: 10, color: 'white'}}>
-                                                $82
-                                            </Text>
                                             <StarRating
                                                 disable={true}
+                                                fullStarColor="gold"
                                                 maxStars={5}
                                                 rating={4}
-                                                starSize={10}
+                                                starSize={15}
                                             />
                                         </View>
                                     </View>
+
+
+
+                                    <View style={styles.placeContainer}>
+                                        <View style={{ flex: 1 }}>
+                                            <Image style={{ flex:1, width:null, height:null, 
+                                                resizeMode:'cover' 
+                                            }}
+                                                source={require('../assets/a.jpg')}
+                                            />
+                                        </View>
+                                        <View style={{ height: 70, alignItems: 'flex-start', 
+                                            justifyContent: 'space-evenly', 
+                                            paddingLeft: 10 }}>
+                                            <Text style={{ fontSize: 10, color: 'white'}}>
+                                                PRIVATE ROOM - 2 BEDS
+                                            </Text>
+                                            <Text style={{ fontSize: 12, fontWeight: 'bold', color: 'white'}}>
+                                                The Cozy Palace
+                                            </Text>
+                                            <StarRating
+                                                disable={true}
+                                                fullStarColor="gold"
+                                                maxStars={5}
+                                                rating={4}
+                                                starSize={15}
+                                            />
+                                        </View>
+                                    </View>
+
 
                                 </View>
                             </View>
@@ -413,6 +446,20 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 20,
         margin: 20
+    },
+    title: { 
+        fontSize: 24, 
+        fontWeight: '700', 
+        color: 'white'
+    },
+    placeContainer: {
+        width:width-40,
+        height:width/2, 
+        borderWidth:0.5, 
+        borderColor: 'grey',
+        borderRadius: 4,
+        // margin: 20
+        marginVertical: 10
     }
 });
 
