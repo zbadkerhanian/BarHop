@@ -1,11 +1,8 @@
 import s from '../styles/global'
 
 import React, { Component } from 'react';
-import MapView from 'react-native-maps';
-import { Dimensions } from 'react-native';
-//Screen width and height
-var width = Dimensions.get('window').width; 
-var height = Dimensions.get('window').height; 
+//import MapView from 'react-native-maps';
+
 import { 
     View,
     Text,
@@ -14,13 +11,20 @@ import {
     TouchableOpacity,
     TextInput,
     Image,
-    FlatList
+    FlatList,
+    SafeAreaView,
+    ScrollView,
+    Dimensions
 } from 'react-native';
 import { Header, Icon } from '../react-native-elements';
 import {Utilities} from '../global_functions/Utilities';
 import { CollapsibleHeaderScrollView } from 'react-native-collapsible-header-views';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import Constants from 'expo-constants';
+import StarRating from 'react-native-star-rating'
+
+
+const { height, width } = Dimensions.get('window');
 
 const LocationInfo = [
     {
@@ -120,7 +124,7 @@ export default class HomeScreen extends Component {
                             statusBarProps={{ 
                                 backgroundColor: '#202020', 
                                 translucent: true, 
-                                barStyle: 'light-content'
+                                barStyle: 'dark-content'
                             }}
 
                             leftComponent={{ 
@@ -246,6 +250,204 @@ export default class HomeScreen extends Component {
                     keyExtractor={item => item.name}
                     />
                 </View>
+
+                <SafeAreaView>
+                        <ScrollView scrollEventThrottle={16}>
+                            <View>
+                                <Text style={styles.text}>
+                                    What can we help you find?
+                                </Text>
+
+                                <View style={{height: 130, marginTop: 20, marginBottom: 30}}>
+                                    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                                        <View style={{height: 130, width: 130, marginLeft: 20,
+                                            borderWidth: 0.5, borderColor: '#dddddd' }}>
+                                            <View style={{ flex: 2}}>
+                                                <Image source={require('../assets/a.jpg')}
+                                                    style={{ flex: 1, width: null, height: null, 
+                                                    resizeMode: 'cover'}}
+                                                    />
+                                            </View>
+                                            <View style={{ flex: 1, paddingLeft: 10, paddingTop: 10}}>
+                                                <Text style={{ color: 'white' }}>Home</Text>
+                                            </View>
+                                        </View>
+
+                                        <View style={{height: 130, width: 130, marginLeft: 20,
+                                            borderWidth: 0.5, borderColor: '#dddddd' }}>
+                                            <View style={{ flex: 2}}>
+                                                <Image source={require('../assets/b.jpg')}
+                                                    style={{ flex: 1, width: null, height: null, 
+                                                    resizeMode: 'cover'}}
+                                                    />
+                                            </View>
+                                            <View style={{ flex: 1, paddingLeft: 10, paddingTop: 10}}>
+                                                <Text style={{ color: 'white' }}>Experiences</Text>
+                                            </View>
+                                        </View>
+
+                                        <View style={{height: 130, width: 130, marginLeft: 20,
+                                            borderWidth: 0.5, borderColor: '#dddddd' }}>
+                                            <View style={{ flex: 2}}>
+                                                <Image source={require('../assets/c.jpg')}
+                                                    style={{ flex: 1, width: null, height: null, 
+                                                    resizeMode: 'cover'}}
+                                                    />
+                                            </View>
+                                            <View style={{ flex: 1, paddingLeft: 10, paddingTop: 10}}>
+                                                <Text style={{ color: 'white' }}>Restaurant</Text>
+                                            </View>
+                                        </View>
+
+                                    </ScrollView>
+                                </View>
+
+                                <View style={{marginTop: 20, paddingHorizontal: 20}}>
+                                    <Text style={styles.title}>
+                                        Introducing Plus
+                                    </Text>
+                                    <Text style={{ fontWeight: '100', marginTop: 10, color: 'white'}}>
+                                        A new selection of homes verified for quality & comfort
+                                    </Text>
+                                    <View style={{width:width-40, height: 200, marginTop: 20}}>
+                                        <Image style={{flex: 1, height: null, width: null, 
+                                            resizeMode: 'cover', borderRadius: 5, borderWidth: 1,
+                                            borderColor: '#dddddd'}}
+                                            source={require('../assets/a.jpg')}
+                                        />
+                                    </View>
+                                </View>
+                            </View>
+
+                            <View style={{ marginTop: 40, 
+                                paddingHorizontal: 20
+                                }}>
+                                <Text style={styles.title}>
+                                    Home around the world
+                                </Text>
+                                <View style={{ marginTop: 20, flexDirection: 'row',
+                                    flexWrap: 'wrap', 
+                                    // justifyContent: 'space-between' , 
+                                    marginBottom: 10}}>
+                                        
+                                    <View style={styles.placeContainer}>
+                                        <View style={{ flex: 1 }}>
+                                            <Image style={{ flex:1, width:null, height:null, 
+                                                resizeMode:'cover' 
+                                            }}
+                                                source={require('../assets/a.jpg')}
+                                            />
+                                        </View>
+                                        <View style={{ height: 70, alignItems: 'flex-start', 
+                                            justifyContent: 'space-evenly', 
+                                            paddingLeft: 10 }}>
+                                            <Text style={{ fontSize: 10, color: 'white'}}>
+                                                PRIVATE ROOM - 2 BEDS
+                                            </Text>
+                                            <Text style={{ fontSize: 12, fontWeight: 'bold', color: 'white'}}>
+                                                The Cozy Palace
+                                            </Text>
+                                            <StarRating
+                                                disable={true}
+                                                fullStarColor="gold"
+                                                maxStars={5}
+                                                rating={4}
+                                                starSize={15}
+                                            />
+                                        </View>
+                                    </View>
+
+
+                                    <View style={styles.placeContainer}>
+                                        <View style={{ flex: 1 }}>
+                                            <Image style={{ flex:1, width:null, height:null, 
+                                                resizeMode:'cover' 
+                                            }}
+                                                source={require('../assets/a.jpg')}
+                                            />
+                                        </View>
+                                        <View style={{ height: 70, alignItems: 'flex-start', 
+                                            justifyContent: 'space-evenly', 
+                                            paddingLeft: 10 }}>
+                                            <Text style={{ fontSize: 10, color: 'white'}}>
+                                                PRIVATE ROOM - 2 BEDS
+                                            </Text>
+                                            <Text style={{ fontSize: 12, fontWeight: 'bold', color: 'white'}}>
+                                                The Cozy Palace
+                                            </Text>
+                                            <StarRating
+                                                disable={true}
+                                                fullStarColor="gold"
+                                                maxStars={5}
+                                                rating={4}
+                                                starSize={15}
+                                            />
+                                        </View>
+                                    </View>
+
+
+
+                                    <View style={styles.placeContainer}>
+                                        <View style={{ flex: 1 }}>
+                                            <Image style={{ flex:1, width:null, height:null, 
+                                                resizeMode:'cover' 
+                                            }}
+                                                source={require('../assets/a.jpg')}
+                                            />
+                                        </View>
+                                        <View style={{ height: 70, alignItems: 'flex-start', 
+                                            justifyContent: 'space-evenly', 
+                                            paddingLeft: 10 }}>
+                                            <Text style={{ fontSize: 10, color: 'white'}}>
+                                                PRIVATE ROOM - 2 BEDS
+                                            </Text>
+                                            <Text style={{ fontSize: 12, fontWeight: 'bold', color: 'white'}}>
+                                                The Cozy Palace
+                                            </Text>
+                                            <StarRating
+                                                disable={true}
+                                                fullStarColor="gold"
+                                                maxStars={5}
+                                                rating={4}
+                                                starSize={15}
+                                            />
+                                        </View>
+                                    </View>
+
+
+
+                                    <View style={styles.placeContainer}>
+                                        <View style={{ flex: 1 }}>
+                                            <Image style={{ flex:1, width:null, height:null, 
+                                                resizeMode:'cover' 
+                                            }}
+                                                source={require('../assets/a.jpg')}
+                                            />
+                                        </View>
+                                        <View style={{ height: 70, alignItems: 'flex-start', 
+                                            justifyContent: 'space-evenly', 
+                                            paddingLeft: 10 }}>
+                                            <Text style={{ fontSize: 10, color: 'white'}}>
+                                                PRIVATE ROOM - 2 BEDS
+                                            </Text>
+                                            <Text style={{ fontSize: 12, fontWeight: 'bold', color: 'white'}}>
+                                                The Cozy Palace
+                                            </Text>
+                                            <StarRating
+                                                disable={true}
+                                                fullStarColor="gold"
+                                                maxStars={5}
+                                                rating={4}
+                                                starSize={15}
+                                            />
+                                        </View>
+                                    </View>
+
+
+                                </View>
+                            </View>
+                        </ScrollView>
+                    </SafeAreaView>
                 
                 
                 <View style={styles.container}>
@@ -295,8 +497,22 @@ const styles = StyleSheet.create({
     text: {
         color: 'white',
         fontSize: 20,
-        margin: 5
+        margin: 20
     },
+    title: { 
+        fontSize: 24, 
+        fontWeight: '700', 
+        color: 'white'
+    },
+    placeContainer: {
+        width:width-40,
+        height:width/2, 
+        borderWidth:0.5, 
+        borderColor: 'grey',
+        borderRadius: 4,
+        // margin: 20
+        marginVertical: 10
+    }
 });
 
 const loginStyles = StyleSheet.create({
