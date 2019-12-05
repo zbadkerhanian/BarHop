@@ -124,7 +124,7 @@ export default class HomeScreen extends Component {
                             statusBarProps={{ 
                                 backgroundColor: '#202020', 
                                 translucent: true, 
-                                barStyle: 'dark-content'
+                                barStyle: 'light-content'
                             }}
 
                             leftComponent={{ 
@@ -151,15 +151,17 @@ export default class HomeScreen extends Component {
                             }
             
                             containerStyle={{
+                                height: 80,
                                 backgroundColor: '#282828',
                                 borderBottomColor: '#282828', 
                                 borderBottomWidth: 1 
                             }}
-                            
+
                         />
                     }
+                    // headerHeight={Platform.OS === 'ios' ? 60 : 80}
                     headerHeight={80}
-                    statusBarHeight={Platform.OS === 'ios' ? 20 : 0}
+                    //statusBarHeight={Platform.OS === 'ios' ? 20 : 0}
                     disableHeaderSnap={true}
                 >
                 <GooglePlacesAutocomplete

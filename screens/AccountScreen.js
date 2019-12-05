@@ -46,6 +46,7 @@ export default class AccountScreen extends Component {
                     }}
                     //rightComponent={<Icon name="home" color='#fff' />}
                     containerStyle={{
+                        height: 80,
                         backgroundColor: '#282828',
                         borderBottomColor:'#282828', 
                         borderBottomWidth:1 

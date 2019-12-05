@@ -147,8 +147,8 @@ const CustomDrawerComponent = (props) => (
     <View style={{ backgroundColor: "#202020", height: Constants.statusBarHeight}}/>
     <View style={{ backgroundColor:'#282828', height: 150, alignItems:'center', justifyContent:'center'}}>
       <View style={{alignItems:'center', justifyContent:'center', borderRadius:60,height:120,width:120, overflow:"hidden"}}>
-        {/* <Image source={require('./assets/profile-photo.jpg')} style={{ height: 160, width: 160 }}/> */}
-        <Image source={{ uri: global.photoUrl }} style={{ height: 160, width: 160 }}/>
+        <Image source={require('./assets/profile-photo.jpg')} style={{ height: 160, width: 160 }}/>
+        {/* <Image source={{ uri: global.photoUrl }} style={{ height: 160, width: 160 }}/> */}
       </View>
     </View>
     <ScrollView style={{backgroundColor:'#282828',height:Dimensions.get('window').height}}>
