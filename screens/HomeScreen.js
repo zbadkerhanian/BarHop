@@ -29,22 +29,22 @@ const { height, width } = Dimensions.get('window');
 const LocationInfo = [
     {
       name: 'Bar1',
-      rating:'1',
+      rating:1,
       cost:"$",
-      distance:'1.1',
+      distance:'1.1 miles',
 
     },
     {
       name: 'Bar2',
-      rating:'2',
+      rating:2,
       cost:'$$',
-      distance:'1.2',
+      distance:'1.2 miles',
     },
     {
         name: 'Bar3',
-        rating:'3',
+        rating:3,
         cost:'$$$',
-        distance:'1.3',  
+        distance:'1.3 miles',  
     },
   ];
 
@@ -219,39 +219,6 @@ export default class HomeScreen extends Component {
                         enablePoweredByContainer      = {false}
                         debounce                      = {200}                                          // debounce the requests in ms. Set to 0 to remove debounce. By default 0ms.
                         />
-                <View>
-                    <FlatList
-                    data={LocationInfo}
-                    showsVerticalScrollIndicator={false}
-                    renderItem={({item}) =>
-                    <TouchableOpacity
-                    onPress={() => this.props.navigation.navigate('Settings')}
-                >
-                    <View style={{flex: 1, flexDirection: 'column',marginVertical:5}}>
-                        <View style={{flex:1,backgroundColor: 'blue'}}>
-                            <Text style={styles.text}>{item.name}</Text>
-                        </View> 
-                        <View >
-                            <Image source={require('./../assets/bar-stock.jpg')} 
-                            style={{ height: 100, width: width }}/>
-                        </View> 
-                        <View style={{flex: 1,flexDirection:'row'}}>
-                            <View style={{flex:1,flexDirection:'column',backgroundColor: 'lightblue'}}>
-                                <Text style={styles.text}>{item.rating}</Text>
-                            </View>
-                            <View style={{flex:1,flexDirection:'column',backgroundColor: 'steelblue'}}>
-                                <Text style={styles.text}>{item.cost}</Text>
-                            </View>
-                            <View style={{flex:1,flexDirection:'column',backgroundColor: 'blue'}}>
-                                <Text style={styles.text}>{item.distance}</Text>
-                            </View>   
-                        </View> 
-                    </View>
-                </TouchableOpacity>
-                    }
-                    keyExtractor={item => item.name}
-                    />
-                </View>
 
                 <SafeAreaView>
                         <ScrollView scrollEventThrottle={16}>
@@ -262,6 +229,7 @@ export default class HomeScreen extends Component {
 
                                 <View style={{height: 130, marginTop: 20, marginBottom: 30}}>
                                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                                        
                                         <View style={{height: 130, width: 130, marginLeft: 20,
                                             borderWidth: 0.5, borderColor: '#dddddd' }}>
                                             <View style={{ flex: 2}}>
@@ -304,7 +272,7 @@ export default class HomeScreen extends Component {
                                     </ScrollView>
                                 </View>
 
-                                <View style={{marginTop: 20, paddingHorizontal: 20}}>
+                                {/* <View style={{marginTop: 20, paddingHorizontal: 20}}>
                                     <Text style={styles.title}>
                                         Introducing Plus
                                     </Text>
@@ -318,9 +286,8 @@ export default class HomeScreen extends Component {
                                             source={require('../assets/a.jpg')}
                                         />
                                     </View>
-                                </View>
+                                </View> */}
                             </View>
-
                             <View style={{ marginTop: 40, 
                                 paddingHorizontal: 20
                                 }}>
@@ -332,121 +299,48 @@ export default class HomeScreen extends Component {
                                     // justifyContent: 'space-between' , 
                                     marginBottom: 10}}>
                                         
-                                    <View style={styles.placeContainer}>
-                                        <View style={{ flex: 1 }}>
-                                            <Image style={{ flex:1, width:null, height:null, 
-                                                resizeMode:'cover' 
-                                            }}
-                                                source={require('../assets/a.jpg')}
-                                            />
-                                        </View>
-                                        <View style={{ height: 70, alignItems: 'flex-start', 
-                                            justifyContent: 'space-evenly', 
-                                            paddingLeft: 10 }}>
-                                            <Text style={{ fontSize: 10, color: 'white'}}>
-                                                PRIVATE ROOM - 2 BEDS
-                                            </Text>
-                                            <Text style={{ fontSize: 12, fontWeight: 'bold', color: 'white'}}>
-                                                The Cozy Palace
-                                            </Text>
-                                            <StarRating
-                                                disable={true}
-                                                fullStarColor="gold"
-                                                maxStars={5}
-                                                rating={4}
-                                                starSize={15}
-                                            />
-                                        </View>
-                                    </View>
-
-
-                                    <View style={styles.placeContainer}>
-                                        <View style={{ flex: 1 }}>
-                                            <Image style={{ flex:1, width:null, height:null, 
-                                                resizeMode:'cover' 
-                                            }}
-                                                source={require('../assets/a.jpg')}
-                                            />
-                                        </View>
-                                        <View style={{ height: 70, alignItems: 'flex-start', 
-                                            justifyContent: 'space-evenly', 
-                                            paddingLeft: 10 }}>
-                                            <Text style={{ fontSize: 10, color: 'white'}}>
-                                                PRIVATE ROOM - 2 BEDS
-                                            </Text>
-                                            <Text style={{ fontSize: 12, fontWeight: 'bold', color: 'white'}}>
-                                                The Cozy Palace
-                                            </Text>
-                                            <StarRating
-                                                disable={true}
-                                                fullStarColor="gold"
-                                                maxStars={5}
-                                                rating={4}
-                                                starSize={15}
-                                            />
-                                        </View>
-                                    </View>
-
-
-
-                                    <View style={styles.placeContainer}>
-                                        <View style={{ flex: 1 }}>
-                                            <Image style={{ flex:1, width:null, height:null, 
-                                                resizeMode:'cover' 
-                                            }}
-                                                source={require('../assets/a.jpg')}
-                                            />
-                                        </View>
-                                        <View style={{ height: 70, alignItems: 'flex-start', 
-                                            justifyContent: 'space-evenly', 
-                                            paddingLeft: 10 }}>
-                                            <Text style={{ fontSize: 10, color: 'white'}}>
-                                                PRIVATE ROOM - 2 BEDS
-                                            </Text>
-                                            <Text style={{ fontSize: 12, fontWeight: 'bold', color: 'white'}}>
-                                                The Cozy Palace
-                                            </Text>
-                                            <StarRating
-                                                disable={true}
-                                                fullStarColor="gold"
-                                                maxStars={5}
-                                                rating={4}
-                                                starSize={15}
-                                            />
-                                        </View>
-                                    </View>
-
-
-
-                                    <View style={styles.placeContainer}>
-                                        <View style={{ flex: 1 }}>
-                                            <Image style={{ flex:1, width:null, height:null, 
-                                                resizeMode:'cover' 
-                                            }}
-                                                source={require('../assets/a.jpg')}
-                                            />
-                                        </View>
-                                        <View style={{ height: 70, alignItems: 'flex-start', 
-                                            justifyContent: 'space-evenly', 
-                                            paddingLeft: 10 }}>
-                                            <Text style={{ fontSize: 10, color: 'white'}}>
-                                                PRIVATE ROOM - 2 BEDS
-                                            </Text>
-                                            <Text style={{ fontSize: 12, fontWeight: 'bold', color: 'white'}}>
-                                                The Cozy Palace
-                                            </Text>
-                                            <StarRating
-                                                disable={true}
-                                                fullStarColor="gold"
-                                                maxStars={5}
-                                                rating={4}
-                                                starSize={15}
-                                            />
-                                        </View>
-                                    </View>
-
-
+                                    <FlatList
+                                        data={LocationInfo}
+                                        showsVerticalScrollIndicator={false}
+                                        renderItem={({item}) =>
+                                            <TouchableOpacity
+                                            onPress={() => this.props.navigation.navigate('LocationInfo')}
+                                            >
+                                            <View style={styles.placeContainer}>
+                                                <View style={{ flex: 1 }}>
+                                                    <Image style={{ flex:1, width:null, height:null, 
+                                                        resizeMode:'cover' 
+                                                    }}
+                                                        source={require('../assets/a.jpg')}
+                                                    />
+                                                </View>
+                                                <View style={{ height: 70, alignItems: 'flex-start', 
+                                                    justifyContent: 'space-evenly', 
+                                                    paddingLeft: 10 }}>
+                                                    <Text style={{ fontSize: 15, fontWeight: 'bold', color: 'white'}}>
+                                                        {item.name}
+                                                    </Text>
+                                                    <Text style={{ fontSize: 10, color: 'white'}}>
+                                                        {item.distance}
+                                                    </Text>
+                                                    <Text style={{ fontSize: 10, color: 'white'}}>
+                                                        {item.cost}
+                                                    </Text>
+                                                    <StarRating
+                                                        disable={true}
+                                                        fullStarColor="gold"
+                                                        maxStars={5}
+                                                        rating={item.rating}
+                                                        starSize={15}
+                                                    />
+                                                </View>
+                                            </View>  
+                                            </TouchableOpacity>
+                                        }
+                                        keyExtractor={item => item.name}
+                                    />                                               
                                 </View>
+                                
                             </View>
                         </ScrollView>
                     </SafeAreaView>

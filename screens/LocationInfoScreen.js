@@ -4,13 +4,12 @@ import {
     View,
     Text,
     StyleSheet,
-    Switch,
 } from "react-native";
 import { Header, Icon } from 'react-native-elements'
 //import { Header, Left, Right, Icon } from 'native-base'
 
 
-export default class NotificationsScreen extends Component {
+export default class LocationInfoScreen extends Component {
     state={
         switchNotifications:false
     }
@@ -48,17 +47,8 @@ export default class NotificationsScreen extends Component {
                         borderBottomWidth:1 
                       }}
                     
-                />
-                <View style={{flex: 1,flexDirection:'row'}}>
-                    <View style={{flex:4,flexDirection:'column'}}>
-                            <Text style={styles.text}>Pause All</Text>
-                    </View>
-                    <View style={{flex:1,flexDirection:'column'}}>
-                        <Switch trackColor={{true: '#C2185B', false: 'grey'}} thumbColor="white" style={styles.switch} value={this.state.switchNotifications} 
-                            onValueChange={(switchNotifications) => this.setState({switchNotifications})}/>
-                    </View>    
-                </View> 
-                {/* <StatusBar backgroundColor="white" barStyle="dark-content"/> */}
+                />               
+                    
             </View>
         );
     }

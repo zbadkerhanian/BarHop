@@ -9,6 +9,7 @@ import AccountScreen from './screens/AccountScreen'
 import PrivacyScreen from './screens/PrivacyScreen'
 import SecurityScreen from './screens/SecurityScreen'
 import FriendsListScreen from './screens/FriendsListScreen'
+import LocationInfoScreen from './screens/LocationInfoScreen'
 import * as Expo from "expo"
 import Constants from 'expo-constants'
 
@@ -207,6 +208,12 @@ const AppDrawerNavigator = createDrawerNavigator({
     },
     Security: {
       screen: SecurityScreen,
+      navigationOptions: {
+        drawerLabel: <Hidden />
+      }
+    },
+    LocationInfo: {
+      screen: LocationInfoScreen,
       navigationOptions: {
         drawerLabel: <Hidden />
       }

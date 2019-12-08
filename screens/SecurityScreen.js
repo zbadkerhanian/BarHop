@@ -4,15 +4,11 @@ import {
     View,
     Text,
     StyleSheet,
-    Platform,
-    StatusBar,
     Switch,
-    TouchableOpacity
 } from "react-native";
 import { Header, Icon } from 'react-native-elements'
 //import { Header, Left, Right, Icon } from 'native-base'
 
-import NotificationsScreen from './NotificationsScreen'
 
 export default class SecurityScreen extends Component {
     state={
