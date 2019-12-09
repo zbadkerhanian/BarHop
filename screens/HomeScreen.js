@@ -32,19 +32,24 @@ const LocationInfo = [
       rating:1,
       cost:"$",
       distance:'1.1 miles',
-
+      photo:"",
+      description:""
     },
     {
       name: 'Bar2',
       rating:2,
       cost:'$$',
       distance:'1.2 miles',
+      photo:"",
+      description:""
     },
     {
         name: 'Bar3',
         rating:3,
         cost:'$$$',
         distance:'1.3 miles',  
+        photo:"",
+        description:""
     },
   ];
 
@@ -271,22 +276,6 @@ export default class HomeScreen extends Component {
 
                                     </ScrollView>
                                 </View>
-
-                                {/* <View style={{marginTop: 20, paddingHorizontal: 20}}>
-                                    <Text style={styles.title}>
-                                        Introducing Plus
-                                    </Text>
-                                    <Text style={{ fontWeight: '100', marginTop: 10, color: 'white'}}>
-                                        A new selection of homes verified for quality & comfort
-                                    </Text>
-                                    <View style={{width:width-40, height: 200, marginTop: 20}}>
-                                        <Image style={{flex: 1, height: null, width: null, 
-                                            resizeMode: 'cover', borderRadius: 5, borderWidth: 1,
-                                            borderColor: '#dddddd'}}
-                                            source={require('../assets/a.jpg')}
-                                        />
-                                    </View>
-                                </View> */}
                             </View>
                             <View style={{ marginTop: 40, 
                                 paddingHorizontal: 20
@@ -304,7 +293,12 @@ export default class HomeScreen extends Component {
                                         showsVerticalScrollIndicator={false}
                                         renderItem={({item}) =>
                                             <TouchableOpacity
-                                            onPress={() => this.props.navigation.navigate('LocationInfo')}
+                                            onPress={() => this.props.navigation.navigate('LocationInfo', {
+                                                name: item.name,
+                                                rating: item.rating,
+                                                cost: item.cost,
+                                                distance: item.distance
+                                            })}
                                             >
                                             <View style={styles.placeContainer}>
                                                 <View style={{ flex: 1 }}>

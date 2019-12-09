@@ -4,15 +4,19 @@ import {
     View,
     Text,
     StyleSheet,
+    Dimensions,
+    Image
 } from "react-native";
 import { Header, Icon } from 'react-native-elements'
 //import { Header, Left, Right, Icon } from 'native-base'
-
+const { height, width } = Dimensions.get('window');
 
 export default class LocationInfoScreen extends Component {
-    state={
-        switchNotifications:false
+    constructor(props){
+        super(props);
+        this.params = this.props.navigation.state.params;
     }
+    
     render() {
         return (
             <View style={[s.global, styles.container]}>
@@ -47,8 +51,23 @@ export default class LocationInfoScreen extends Component {
                         borderBottomWidth:1 
                       }}
                     
-                />               
-                    
+                />
+                    <View style={{marginTop: 20, paddingHorizontal: 20}}>
+                        <Text style={styles.title}>
+                            Introducing Plus
+                        </Text>
+                        <Text style={{ fontWeight: '100', marginTop: 10, color: 'white'}}>
+                            A new selection of homes verified for quality & comfort
+                        </Text>
+                        <View style={{width:width-40, height: 200, marginTop: 20}}>
+                            <Image style={{flex: 1, height: null, width: null, 
+                                resizeMode: 'cover', borderRadius: 5, borderWidth: 1,
+                                borderColor: '#dddddd'}}
+                                source={require('../assets/a.jpg')}
+                            />
+                        </View>
+                    </View>               
+                    <Text style={styles.text}>{this.params.name} {this.params.rating} {this.params.cost} {this.params.distance}</Text>
             </View>
         );
     }
@@ -66,5 +85,10 @@ const styles = StyleSheet.create({
     },
     switch:{
         margin: 5
-    }
+    },
+    title: { 
+        fontSize: 24, 
+        fontWeight: '700', 
+        color: 'white'
+    },
 });
