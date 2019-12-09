@@ -5,7 +5,8 @@ import {
     Text,
     StyleSheet,
     Dimensions,
-    Image
+    Image,
+    TouchableOpacity
 } from "react-native";
 import { Header, Icon } from 'react-native-elements'
 //import { Header, Left, Right, Icon } from 'native-base'
@@ -52,22 +53,29 @@ export default class LocationInfoScreen extends Component {
                       }}
                     
                 />
+                    
+                    
                     <View style={{marginTop: 20, paddingHorizontal: 20}}>
                         <Text style={styles.title}>
-                            Introducing Plus
-                        </Text>
-                        <Text style={{ fontWeight: '100', marginTop: 10, color: 'white'}}>
-                            A new selection of homes verified for quality & comfort
+                            {this.params.name}
                         </Text>
                         <View style={{width:width-40, height: 200, marginTop: 20}}>
-                            <Image style={{flex: 1, height: null, width: null, 
-                                resizeMode: 'cover', borderRadius: 5, borderWidth: 1,
-                                borderColor: '#dddddd'}}
-                                source={require('../assets/a.jpg')}
-                            />
+                            {this.params.image}
                         </View>
-                    </View>               
-                    <Text style={styles.text}>{this.params.name} {this.params.rating} {this.params.cost} {this.params.distance}</Text>
+                        <Text style={styles.text}>
+                            {this.params.description}
+                        </Text>
+                    </View>
+                    
+                    <Text style={styles.text}>{this.params.name}, {this.params.cost}, {this.params.distance}</Text>
+                    
+                    <TouchableOpacity
+                            onPress={() => this.props.navigation.navigate('Home')}
+                            >
+                            <Text style={styles.home}>Go Home</Text>
+                            
+                        </TouchableOpacity>
+                        
             </View>
         );
     }
@@ -82,6 +90,12 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 20,
         margin: 5
+    },
+    home:{
+        color: 'white',
+        fontSize: 20,
+        margin: 5,
+        textDecorationLine: 'underline'
     },
     switch:{
         margin: 5

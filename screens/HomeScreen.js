@@ -28,28 +28,31 @@ const { height, width } = Dimensions.get('window');
 
 const LocationInfo = [
     {
-      name: 'Bar1',
+      name: 'Tiki Ti',
       rating:1,
       cost:"$",
       distance:'1.1 miles',
-      photo:"",
-      description:""
+      image:<Image style={{ flex:1, width:null, height:null, resizeMode:'cover' }}
+        source={require('../assets/Tiki_Ti.jpg')}/>,
+      description:<Text>The Tiki Ti is a Polynesian-themed tiki bar on Sunset Boulevard, in the Los Feliz district of Los Angeles. It is considered by many to be the very epitome of the Tiki tavern style.</Text>
     },
     {
-      name: 'Bar2',
-      rating:2,
+      name: 'The Varnish',
+      rating:3,
       cost:'$$',
       distance:'1.2 miles',
-      photo:"",
-      description:""
+      image:<Image style={{ flex:1, width:null, height:null, resizeMode:'cover' }}
+        source={require('../assets/The_Varnish.jpg')}/>,
+      description:<Text>Mixologists handcraft custom cocktails at this dark, moody speakeasy hidden behind Cole's bar.</Text>
     },
     {
-        name: 'Bar3',
-        rating:3,
+        name: 'Frolic Room',
+        rating:5,
         cost:'$$$',
-        distance:'1.3 miles',  
-        photo:"",
-        description:""
+        distance:'1.3 miles',
+        image:<Image style={{ flex:1, width:null, height:null, resizeMode:'cover' }}
+            source={require('../assets/Frolic_Room.jpg')}/>,
+        description:<Text>Photos of movie stars deck the walls at this historic, no-frills bar, famous for its jukebox.</Text>
     },
   ];
 
@@ -238,39 +241,39 @@ export default class HomeScreen extends Component {
                                         <View style={{height: 130, width: 130, marginLeft: 20,
                                             borderWidth: 0.5, borderColor: '#dddddd' }}>
                                             <View style={{ flex: 2}}>
-                                                <Image source={require('../assets/a.jpg')}
+                                                <Image source={require('../assets/Bars.jpg')}
                                                     style={{ flex: 1, width: null, height: null, 
                                                     resizeMode: 'cover'}}
                                                     />
                                             </View>
                                             <View style={{ flex: 1, paddingLeft: 10, paddingTop: 10}}>
-                                                <Text style={{ color: 'white' }}>Home</Text>
+                                                <Text style={{ color: 'white' }}>Bars</Text>
                                             </View>
                                         </View>
 
                                         <View style={{height: 130, width: 130, marginLeft: 20,
                                             borderWidth: 0.5, borderColor: '#dddddd' }}>
                                             <View style={{ flex: 2}}>
-                                                <Image source={require('../assets/b.jpg')}
+                                                <Image source={require('../assets/Clubs.jpg')}
                                                     style={{ flex: 1, width: null, height: null, 
                                                     resizeMode: 'cover'}}
                                                     />
                                             </View>
                                             <View style={{ flex: 1, paddingLeft: 10, paddingTop: 10}}>
-                                                <Text style={{ color: 'white' }}>Experiences</Text>
+                                                <Text style={{ color: 'white' }}>Clubs</Text>
                                             </View>
                                         </View>
 
                                         <View style={{height: 130, width: 130, marginLeft: 20,
                                             borderWidth: 0.5, borderColor: '#dddddd' }}>
                                             <View style={{ flex: 2}}>
-                                                <Image source={require('../assets/c.jpg')}
+                                                <Image source={require('../assets/Lounges.jpg')}
                                                     style={{ flex: 1, width: null, height: null, 
                                                     resizeMode: 'cover'}}
                                                     />
                                             </View>
                                             <View style={{ flex: 1, paddingLeft: 10, paddingTop: 10}}>
-                                                <Text style={{ color: 'white' }}>Restaurant</Text>
+                                                <Text style={{ color: 'white' }}>Lounges</Text>
                                             </View>
                                         </View>
 
@@ -297,16 +300,14 @@ export default class HomeScreen extends Component {
                                                 name: item.name,
                                                 rating: item.rating,
                                                 cost: item.cost,
-                                                distance: item.distance
+                                                distance: item.distance,
+                                                image: item.image,
+                                                description: item.description
                                             })}
                                             >
                                             <View style={styles.placeContainer}>
                                                 <View style={{ flex: 1 }}>
-                                                    <Image style={{ flex:1, width:null, height:null, 
-                                                        resizeMode:'cover' 
-                                                    }}
-                                                        source={require('../assets/a.jpg')}
-                                                    />
+                                                    {item.image}
                                                 </View>
                                                 <View style={{ height: 70, alignItems: 'flex-start', 
                                                     justifyContent: 'space-evenly', 
