@@ -143,19 +143,26 @@ export default class HomeScreen extends Component {
                             }}
 
                             centerComponent={
-                                <View style={{flex:1, flexDirection:'row', paddingHorizontal:10, marginVertical: 10, backgroundColor: '#202020'}}>
-                                    <Icon name='search' color='#C2185B' containerStyle={{paddingTop: 5.15, marginRight: 10}}/>
-                                    <TextInput 
-                                        placeholder='Search' 
-                                        style={{
-                                            color: '#fff', 
-                                            flex:1, 
-                                            lineHeight: 35
-                                        }}
-                                        returnKeyType='go'
-                                        onSubmitEditing={() => {console.log('searched something');}}
-                                        />
-                                </View>
+                                // <View style={{flex:1, flexDirection:'row', paddingHorizontal:10, marginVertical: 10, backgroundColor: '#202020'}}>
+                                //     <Icon name='search' color='#C2185B' containerStyle={{paddingTop: 5.15, marginRight: 10}}/>
+                                //     <TextInput 
+                                //         placeholder='Search' 
+                                //         style={{
+                                //             color: '#fff', 
+                                //             flex:1, 
+                                //             lineHeight: 35
+                                //         }}
+                                //         returnKeyType='go'
+                                //         onSubmitEditing={() => {console.log('searched something');}}
+                                //         />
+                                // </View>
+                                {
+                                    text: 'BarHop', 
+                                    style: { 
+                                        color: '#C2185B', 
+                                        fontSize: 25 
+                                    } 
+                                }
                             }
             
                             containerStyle={{
@@ -239,7 +246,7 @@ export default class HomeScreen extends Component {
                                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                                         
                                         <View style={{height: 130, width: 130, marginLeft: 20,
-                                            borderWidth: 0.5, borderColor: '#dddddd' }}>
+                                            borderWidth: 0.5, borderColor: '#dddddd', borderRadius: 4}}>
                                             <View style={{ flex: 2}}>
                                                 <Image source={require('../assets/Bars.jpg')}
                                                     style={{ flex: 1, width: null, height: null, 
@@ -252,7 +259,7 @@ export default class HomeScreen extends Component {
                                         </View>
 
                                         <View style={{height: 130, width: 130, marginLeft: 20,
-                                            borderWidth: 0.5, borderColor: '#dddddd' }}>
+                                            borderWidth: 0.5, borderColor: '#dddddd', borderRadius: 4}}>
                                             <View style={{ flex: 2}}>
                                                 <Image source={require('../assets/Clubs.jpg')}
                                                     style={{ flex: 1, width: null, height: null, 
@@ -265,7 +272,7 @@ export default class HomeScreen extends Component {
                                         </View>
 
                                         <View style={{height: 130, width: 130, marginLeft: 20,
-                                            borderWidth: 0.5, borderColor: '#dddddd' }}>
+                                            borderWidth: 0.5, borderColor: '#dddddd', borderRadius: 4}}>
                                             <View style={{ flex: 2}}>
                                                 <Image source={require('../assets/Lounges.jpg')}
                                                     style={{ flex: 1, width: null, height: null, 
@@ -284,7 +291,7 @@ export default class HomeScreen extends Component {
                                 paddingHorizontal: 20
                                 }}>
                                 <Text style={styles.title}>
-                                    Home around the world
+                                    Bars Near You
                                 </Text>
                                 <View style={{ marginTop: 20, flexDirection: 'row',
                                     flexWrap: 'wrap', 
@@ -315,10 +322,10 @@ export default class HomeScreen extends Component {
                                                     <Text style={{ fontSize: 15, fontWeight: 'bold', color: 'white'}}>
                                                         {item.name}
                                                     </Text>
-                                                    <Text style={{ fontSize: 10, color: 'white'}}>
+                                                    <Text style={{ fontSize: 12, color: 'white'}}>
                                                         {item.distance}
                                                     </Text>
-                                                    <Text style={{ fontSize: 10, color: 'white'}}>
+                                                    <Text style={{ fontSize: 12, color: 'white'}}>
                                                         {item.cost}
                                                     </Text>
                                                     <StarRating
@@ -399,7 +406,7 @@ const styles = StyleSheet.create({
         width:width-40,
         height:width/2, 
         borderWidth:0.5, 
-        borderColor: 'grey',
+        borderColor: '#dddddd',
         borderRadius: 4,
         // margin: 20
         marginVertical: 10

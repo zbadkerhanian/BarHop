@@ -17,8 +17,9 @@ export default class LocationInfoScreen extends Component {
         super(props);
         this.params = this.props.navigation.state.params;
     }
-    
+
     render() {
+        this.params = this.props.navigation.state.params;
         return (
             <View style={[s.global, styles.container]}>
                 <Header
