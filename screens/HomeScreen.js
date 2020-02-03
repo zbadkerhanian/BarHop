@@ -22,6 +22,7 @@ import { CollapsibleHeaderScrollView } from 'react-native-collapsible-header-vie
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import Constants from 'expo-constants';
 import StarRating from 'react-native-star-rating'
+import ModalDropdown from 'react-native-modal-dropdown'
 
 
 const { height, width } = Dimensions.get('window');
@@ -290,9 +291,23 @@ export default class HomeScreen extends Component {
                             <View style={{ marginTop: 40, 
                                 paddingHorizontal: 20
                                 }}>
-                                <Text style={styles.title}>
+
+                                <View style={{flexDirection: "row"}}>
+                                <Text style={{fontSize: 24, fontWeight: '700', 
+                                color: 'white', flex:1}}>
                                     Bars Near You
                                 </Text>
+                                <ModalDropdown textStyle={styles.title} 
+                                style={{
+                                    justifyContent: "flex-end",
+                                    flexDirection: "row"
+                                  }}
+                                defaultValue={'Sort By'} 
+                                options={['Distance', 'Price Hight to Low', 'Price Low to High', 'Rating']}
+                                
+                                />
+                                </View>
+                                    
                                 <View style={{ marginTop: 20, flexDirection: 'row',
                                     flexWrap: 'wrap', 
                                     // justifyContent: 'space-between' , 
