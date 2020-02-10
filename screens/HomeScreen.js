@@ -19,7 +19,7 @@ import {
 import { Header, Icon } from '../react-native-elements';
 import {Utilities} from '../global_functions/Utilities';
 import { CollapsibleHeaderScrollView } from 'react-native-collapsible-header-views';
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import { GooglePlacesAutocomplete } from '../react-native-google-places-autocomplete';
 import Constants from 'expo-constants';
 import StarRating from 'react-native-star-rating'
 import ModalDropdown from 'react-native-modal-dropdown'
