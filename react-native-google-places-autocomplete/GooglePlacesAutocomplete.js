@@ -19,7 +19,7 @@ import debounce from 'lodash.debounce';
 
 const WINDOW = Dimensions.get('window');
 
-let dataJSON = [];
+var dataJSON = [];
 
 const defaultStyles = {
   container: {
@@ -535,16 +535,15 @@ export default class GooglePlacesAutocomplete extends Component {
       "types":rowData.types,
       "address": rowData.vicinity,
       "rating": rowData.rating,
-      "openNow": rowData.opening_hours
-      
+      "openNow": rowData.opening_hours   
     });
-    
     return (
       <Text style={[{flex: 1}, this.props.suppressDefaultStyles ? {} : defaultStyles.description, this.props.styles.description, rowData.isPredefinedPlace ? this.props.styles.predefinedPlacesDescription : {}]}
         numberOfLines={this.props.numberOfLines}
       >
         {this._renderDescription(rowData)}
       </Text>
+      
     );
   }
 
@@ -716,7 +715,6 @@ export default class GooglePlacesAutocomplete extends Component {
           </View>
         }
         {this._getFlatList()}
-        {console.log(dataJSON)}
         {this.props.children}
       </View>
       
@@ -830,5 +828,6 @@ const create = function create(options = {}) {
 
 module.exports = {
   GooglePlacesAutocomplete,
-  create
+  create,
+  dataJSON
 };

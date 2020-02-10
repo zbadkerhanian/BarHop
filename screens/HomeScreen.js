@@ -19,7 +19,7 @@ import {
 import { Header, Icon } from '../react-native-elements';
 import {Utilities} from '../global_functions/Utilities';
 import { CollapsibleHeaderScrollView } from 'react-native-collapsible-header-views';
-import { GooglePlacesAutocomplete } from '../react-native-google-places-autocomplete';
+import { GooglePlacesAutocomplete, dataJSON } from '../react-native-google-places-autocomplete';
 import Constants from 'expo-constants';
 import StarRating from 'react-native-star-rating'
 import ModalDropdown from 'react-native-modal-dropdown'
@@ -125,6 +125,7 @@ export default class HomeScreen extends Component {
         .then((response) => response.json()).then((result)=> console.log(result));
     }
     render() {
+        
         return (
             <View style={s.global}>  
                 <CollapsibleHeaderScrollView
@@ -235,7 +236,7 @@ export default class HomeScreen extends Component {
                         enablePoweredByContainer      = {false}
                         debounce                      = {200}                                          // debounce the requests in ms. Set to 0 to remove debounce. By default 0ms.
                         />
-
+                
                 <SafeAreaView>
                         <ScrollView scrollEventThrottle={16}>
                             <View>
@@ -392,8 +393,6 @@ export default class HomeScreen extends Component {
                     )}
                 </View>
                 </CollapsibleHeaderScrollView>
-                
-                
             </View>
         );
     }
