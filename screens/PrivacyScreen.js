@@ -31,6 +31,7 @@ export default class PrivacyScreen extends Component {
                         color:'#C2185B', 
                         underlayColor:'#282828',
                         //onPress={() => this.props.navigation.navigate('Settings')}
+                        onPress: () => this.props.navigation.navigate('Settings')
                     }}
                     centerComponent={{ 
                         text: 'BarHop', 

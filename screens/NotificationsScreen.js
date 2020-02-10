@@ -28,10 +28,12 @@ export default class NotificationsScreen extends Component {
                     //leftComponent={{ icon: 'menu', color: '#fff' }}
                     //leftComponent={ <Icon name="menu" color='#fff' underlayColor='#282828' onPress={() => {this.props.navigation.openDrawer()}}/>}
                     leftComponent={{ 
-                        icon: "menu",
+                        //icon: "menu",
+                        icon: "chevron-left",
                         color:'#C2185B', 
                         underlayColor:'#282828',
-                        onPress: this.props.navigation.openDrawer
+                        //onPress: this.props.navigation.openDrawer
+                        onPress: () => this.props.navigation.navigate('Settings')
                     }}
                     centerComponent={{ 
                         text: 'BarHop', 

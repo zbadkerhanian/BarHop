@@ -244,20 +244,22 @@ export default class HomeScreen extends Component {
 
                                 <View style={{height: 130, marginTop: 20, marginBottom: 30}}>
                                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                                        
-                                        <View style={{height: 130, width: 130, marginLeft: 20,
+                                        <TouchableOpacity onPress={() => console.log("Bars")}>
+                                            <View style={{height: 130, width: 130, marginLeft: 20,
                                             borderWidth: 0.5, borderColor: '#dddddd', borderRadius: 4}}>
-                                            <View style={{ flex: 2}}>
-                                                <Image source={require('../assets/Bars.jpg')}
+                                                <View style={{ flex: 2}}>
+                                                    <Image source={require('../assets/Bars.jpg')}
                                                     style={{ flex: 1, width: null, height: null, 
                                                     resizeMode: 'cover'}}
-                                                    />
+                                                        />
+                                                </View>
+                                                <View style={{ flex: 1, paddingLeft: 10, paddingTop: 10}}>
+                                                    <Text style={{ color: 'white' }}>Bars</Text>
+                                                </View>
                                             </View>
-                                            <View style={{ flex: 1, paddingLeft: 10, paddingTop: 10}}>
-                                                <Text style={{ color: 'white' }}>Bars</Text>
-                                            </View>
-                                        </View>
-
+                                        </TouchableOpacity>
+                                        
+                                        <TouchableOpacity onPress={() => console.log("Clubs")}>
                                         <View style={{height: 130, width: 130, marginLeft: 20,
                                             borderWidth: 0.5, borderColor: '#dddddd', borderRadius: 4}}>
                                             <View style={{ flex: 2}}>
@@ -270,7 +272,9 @@ export default class HomeScreen extends Component {
                                                 <Text style={{ color: 'white' }}>Clubs</Text>
                                             </View>
                                         </View>
+                                        </TouchableOpacity>
 
+                                        <TouchableOpacity onPress={() => console.log("Lounges")}>
                                         <View style={{height: 130, width: 130, marginLeft: 20,
                                             borderWidth: 0.5, borderColor: '#dddddd', borderRadius: 4}}>
                                             <View style={{ flex: 2}}>
@@ -283,6 +287,7 @@ export default class HomeScreen extends Component {
                                                 <Text style={{ color: 'white' }}>Lounges</Text>
                                             </View>
                                         </View>
+                                        </TouchableOpacity>
 
                                     </ScrollView>
                                 </View>
