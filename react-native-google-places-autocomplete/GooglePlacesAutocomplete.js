@@ -82,9 +82,8 @@ export default class GooglePlacesAutocomplete extends Component {
 
   constructor (props) {
     super(props);
-    this.state = this.getInitialState.call(this);
+    this.state = this.getInitialState.call(this)
   }
-
   getInitialState = () => ({
     text: this.props.getDefaultValue(),
     dataSource: this.buildRowsFromResults([]),
@@ -527,9 +526,6 @@ export default class GooglePlacesAutocomplete extends Component {
   }
 
   _renderRowData = (rowData) => {
-    if (this.props.renderRow) {
-      return this.props.renderRow(rowData);
-    }
     dataJSON.push({
       "name": rowData.name,
       "types":rowData.types,
@@ -537,6 +533,9 @@ export default class GooglePlacesAutocomplete extends Component {
       "rating": rowData.rating,
       "openNow": rowData.opening_hours   
     });
+    if (this.props.renderRow) {
+      return this.props.renderRow(rowData);
+    }
     return (
       <Text style={[{flex: 1}, this.props.suppressDefaultStyles ? {} : defaultStyles.description, this.props.styles.description, rowData.isPredefinedPlace ? this.props.styles.predefinedPlacesDescription : {}]}
         numberOfLines={this.props.numberOfLines}
@@ -809,7 +808,7 @@ GooglePlacesAutocomplete.defaultProps = {
   suppressDefaultStyles: false,
   numberOfLines: 1,
   onSubmitEditing: () => {},
-  editable: true
+  editable: true,
 }
 
 // this function is still present in the library to be retrocompatible with version < 1.1.0
