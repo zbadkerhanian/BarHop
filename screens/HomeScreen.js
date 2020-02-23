@@ -14,7 +14,8 @@ import {
     FlatList,
     SafeAreaView,
     ScrollView,
-    Dimensions
+    Dimensions,
+    Linking
 } from 'react-native';
 import { Header, Icon } from '../react-native-elements';
 import {Utilities} from '../global_functions/Utilities';
@@ -58,8 +59,14 @@ const LocationInfo = [
   ];
 
 export default class HomeScreen extends Component {
+
+    geoOptions={
+        enableHighAccuracy:true,
+    };
+
     constructor(props){
         super(props);
+
         this.state = {
             ready: false,
             lat: null,
@@ -69,29 +76,20 @@ export default class HomeScreen extends Component {
             photoUrl: props.photoUrl
         }
         _utilities = new Utilities();
-
-
-        let geoOptions={
-            enableHighAccuracy:true,
-        };
-        navigator.geolocation.watchPosition(this.geoSuccess,this.geoFailure,geoOptions);
+        //navigator.geolocation.watchPosition(this.geoSuccess,this.geoFailure,this.geoOptions);
 
     }
+
     componentDidMount(){
-        // let geoOptions={
-        //     enableHighAccuracy:true,
-        // };
-        this.setState({ready:false})
-        // navigator.geolocation.watchPosition(this.geoSuccess,this.geoFailure,geoOptions);
-        this.setState({ready: false, error: null});
-        _utilities.getUserLocation(this.geoSuccess);
+        //_utilities.getUserLocation(this.geoSuccess);
     }
-    geoFailure=(err)=>{
+
+    geoFailure = (err)=>{
         console.log(err);
     }
 
     geoSuccess = (position) => {
-        this.setState({ready: true});
+        console.log("geoSuccess function called")
         this.setState({
             ready: true,
             // where: {
@@ -100,17 +98,11 @@ export default class HomeScreen extends Component {
             // }
         })
     }
-    test(){
-        this.setState({
-            ready: true,
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-        })
-    }
     
     getGeo(){
-        console.log('run test'); 
+        console.log('getGeo'); 
         _utilities.getUserLocation(this.geoSuccess);
+        //console.log('new state is .. ', this.state.lat, this.state.lng);
         fetch('http://Barhopapi-env.sesiektkrm.us-west-1.elasticbeanstalk.com/api/Test/postGeo', {
             method: 'POST',
             headers: {
@@ -122,10 +114,10 @@ export default class HomeScreen extends Component {
                 lng: this.state.lng,
             }),
         })
-        .then((response) => response.json()).then((result)=> console.log(result));
+        .then((response) => response.json()).then((result)=> console.log("result of beanstalk call:", result));
     }
     render() {
-        
+        console.log("homeScreen Render")
         return (
             <View style={s.global}>  
                 <CollapsibleHeaderScrollView
@@ -184,7 +176,6 @@ export default class HomeScreen extends Component {
                 <GooglePlacesAutocomplete
                         placeholder = 'Search'
                         minLength   = {2}       // minimum length of text to search
-                        autoFocus
                         returnKeyType     = {'search'}  // Can be left out for default return key https://facebook.github.io/react-native/docs/textinput.html#returnkeytype
                         listViewDisplayed = 'auto'      // true/false/undefined
                         fetchDetails= {true}
@@ -196,7 +187,7 @@ export default class HomeScreen extends Component {
 
                         }}
                         textInputProps={{
-                            onChangeText: (location) => this.setState({ location })
+                            onChangeText: (location) => {console.log("changeText"); this.setState({ location })}
                         }}
                         getDefaultValue={() => {
                             return '' // text input default value
@@ -246,7 +237,7 @@ export default class HomeScreen extends Component {
 
                                 <View style={{height: 130, marginTop: 20, marginBottom: 30}}>
                                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                                        <TouchableOpacity onPress={() => console.log("Bars")}>
+                                        <TouchableOpacity onPress={() => {console.log("Open Universal Deeplink"); Linking.openURL("https://m.uber.com/ul/?action=setPickup&client_id=vQI_ycPZAiK7i9Ru0_ZcqH2FSxaCPqdk&pickup=my_location&dropoff[formatted_address]=20455%20Acre%20St%2C%20Winnetka%2C%20CA%2C%20USA&dropoff[latitude]=34.230169&dropoff[longitude]=-118.579539");}}>
                                             <View style={{height: 130, width: 130, marginLeft: 20,
                                             borderWidth: 0.5, borderColor: '#dddddd', borderRadius: 4}}>
                                                 <View style={{ flex: 2}}>
@@ -261,7 +252,7 @@ export default class HomeScreen extends Component {
                                             </View>
                                         </TouchableOpacity>
                                         
-                                        <TouchableOpacity onPress={() => console.log("Clubs")}>
+                                        <TouchableOpacity onPress={() => {console.log("Open Standard Deeplink"); Linking.openURL('uber://?action=setPickup&client_id=vQI_ycPZAiK7i9Ru0_ZcqH2FSxaCPqdk&pickup=my_location&dropoff[formatted_address]=20455%20Acre%20St%2C%20Winnetka%2C%20CA%2C%20USA&dropoff[latitude]=34.230169&dropoff[longitude]=-118.579539');}}>
                                         <View style={{height: 130, width: 130, marginLeft: 20,
                                             borderWidth: 0.5, borderColor: '#dddddd', borderRadius: 4}}>
                                             <View style={{ flex: 2}}>
@@ -309,7 +300,7 @@ export default class HomeScreen extends Component {
                                     flexDirection: "row"
                                   }}
                                 defaultValue={'Sort By'} 
-                                options={['Distance', 'Price Hight to Low', 'Price Low to High', 'Rating']}
+                                options={['Distance', 'Price: High to Low', 'Price: Low to High', 'Rating']}
                                 
                                 />
                                 </View>
@@ -369,14 +360,14 @@ export default class HomeScreen extends Component {
                     </SafeAreaView>
                 
                 
-                <View style={styles.container}>
-                    {/* <View style={styles.container}> */}
-                        {/* <Text style={loginStyles.header}>Welcome:{props.name}</Text>
-                        <Image style={loginStyles.image} source={{ uri: props.photoUrl }} /> */}
+                {/* <View style={styles.container}>
+                    <View style={styles.container}>
+                        <Text style={loginStyles.header}>Welcome:{props.name}</Text>
+                        <Image style={loginStyles.image} source={{ uri: props.photoUrl }} />
                         <Text style={styles.text}>Welcome: {global.name}</Text>
-                        {/* <Image style={loginStyles.image} source={{ uri: global.photoUrl }} /> */}
-                    {/* </View> */}
-                    <TouchableOpacity onPress={() => {this.getGeo(); console.log('new state is .. '); console.log(this.state.lat); console.log(this.state.lng)}}><Text style={{paddingBottom: 40, color:'#C2185B', fontSize: 20}}>TEST</Text></TouchableOpacity>
+                        <Image style={loginStyles.image} source={{ uri: global.photoUrl }} />
+                    </View>
+                    <TouchableOpacity onPress={() => this.getGeo()}><Text style={{paddingBottom: 40, color:'#C2185B', fontSize: 20}}>TEST</Text></TouchableOpacity>
 
                     { !this.state.ready && (
                         //when ready is false
@@ -396,7 +387,7 @@ export default class HomeScreen extends Component {
                             Longitude: {this.state.lng}
                         </Text>
                     )}
-                </View>
+                </View> */}
                 </CollapsibleHeaderScrollView>
             </View>
         );
