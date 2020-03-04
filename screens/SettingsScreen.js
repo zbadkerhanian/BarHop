@@ -66,11 +66,6 @@ export default class SettingsScreen extends Component {
                             >
                             <Text style={styles.text}>Security</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity
-                            onPress={() => this.props.navigation.navigate('Account')}
-                            >
-                            <Text style={styles.text}>Account</Text>
-                        </TouchableOpacity>
                     </View>
                     <View style={{flex:1,flexDirection:'column'}}>
                     </View>    

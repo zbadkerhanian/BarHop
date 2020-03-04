@@ -28,14 +28,11 @@ export default class FriendsListScreen extends Component {
                         translucent:true, 
                         barStyle:'light-content'
                     }}
-
-                    //leftComponent={{ icon: 'menu', color: '#fff' }}
-                    //leftComponent={ <Icon name="menu" color='#fff' underlayColor='#282828' onPress={() => {this.props.navigation.openDrawer()}}/>}
                     leftComponent={{ 
-                        icon: "menu",
+                        icon: "chevron-left",
                         color:'#C2185B', 
                         underlayColor:'#282828',
-                        onPress: this.props.navigation.openDrawer
+                        onPress: () => this.props.navigation.goBack()
                     }}
                     centerComponent={{ 
                         text: 'BarHop', 
@@ -56,11 +53,7 @@ export default class FriendsListScreen extends Component {
                 <View style={{flex: 1,flexDirection:'row'}}>
                     <View style={{flex:4,flexDirection:'column'}}>
                             <Text style={styles.text}>Friends List</Text>
-                    </View>
-                    <View style={{flex:1,flexDirection:'column'}}>
-                        <Switch trackColor={{true: '#C2185B', false: 'grey'}} thumbColor="white" style={styles.switch} value={this.state.switchNotifications} 
-                            onValueChange={(switchNotifications) => this.setState({switchNotifications})}/>
-                    </View>    
+                    </View> 
                 </View> 
                 {/* <StatusBar backgroundColor="white" barStyle="dark-content"/> */}
             </View>

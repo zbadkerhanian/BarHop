@@ -239,7 +239,7 @@ export default class HomeScreen extends Component {
                                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                                         <TouchableOpacity onPress={() => {console.log("Open Universal Deeplink"); Linking.openURL("https://m.uber.com/ul/?action=setPickup&client_id=vQI_ycPZAiK7i9Ru0_ZcqH2FSxaCPqdk&pickup=my_location&dropoff[formatted_address]=20455%20Acre%20St%2C%20Winnetka%2C%20CA%2C%20USA&dropoff[latitude]=34.230169&dropoff[longitude]=-118.579539");}}>
                                             <View style={{height: 130, width: 130, marginLeft: 20,
-                                            borderWidth: 0.5, borderColor: '#dddddd', borderRadius: 4}}>
+                                            borderWidth: 0.5, borderColor: '#dddddd', borderRadius: 4, overflow:"hidden"}}>
                                                 <View style={{ flex: 2}}>
                                                     <Image source={require('../assets/Bars.jpg')}
                                                     style={{ flex: 1, width: null, height: null, 
@@ -419,7 +419,8 @@ const styles = StyleSheet.create({
         borderColor: '#dddddd',
         borderRadius: 4,
         // margin: 20
-        marginVertical: 10
+        marginVertical: 10,
+        overflow:"hidden"
     }
 });
 

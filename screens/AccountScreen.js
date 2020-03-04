@@ -32,12 +32,10 @@ export default class AccountScreen extends Component {
                     //leftComponent={{ icon: 'menu', color: '#fff' }}
                     //leftComponent={ <Icon name="menu" color='#fff' underlayColor='#282828' onPress={() => {this.props.navigation.openDrawer()}}/>}
                     leftComponent={{ 
-                        //icon: "menu",
-                        icon: "chevron-left",
-                        color:'#C2185B', 
-                        underlayColor:'#282828',
-                        //onPress: this.props.navigation.openDrawer
-                        onPress: () => this.props.navigation.navigate('Settings')
+                        icon: 'menu',
+                        color: '#C2185B', 
+                        underlayColor: '#282828',
+                        onPress: this.props.navigation.openDrawer
                     }}
                     centerComponent={{ 
                         text: 'BarHop', 
@@ -57,8 +55,8 @@ export default class AccountScreen extends Component {
                 />
                 <View style={{flex: 1,flexDirection:'row'}}>
                     <View style={{flex:4,flexDirection:'column'}}>
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Settings')}>
-                            <Text style={styles.text}>Account Screen</Text>
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Friends')}>
+                            <Text style={styles.text}>View Friends</Text>
                         </TouchableOpacity>
                     </View>
                     <View style={{flex:1,flexDirection:'column'}}>

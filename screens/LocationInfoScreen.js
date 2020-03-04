@@ -15,11 +15,10 @@ const { height, width } = Dimensions.get('window');
 export default class LocationInfoScreen extends Component {
     constructor(props){
         super(props);
-        this.params = this.props.navigation.state.params;
+        this.params = this.props.route.params;
     }
 
     render() {
-        this.params = this.props.navigation.state.params;
         return (
             <View style={[s.global, styles.container]}>
                 <Header
@@ -30,13 +29,11 @@ export default class LocationInfoScreen extends Component {
                         barStyle:'light-content'
                     }}
 
-                    //leftComponent={{ icon: 'menu', color: '#fff' }}
-                    //leftComponent={ <Icon name="menu" color='#fff' underlayColor='#282828' onPress={() => {this.props.navigation.openDrawer()}}/>}
                     leftComponent={{ 
-                        icon: "menu",
+                        icon: "chevron-left",
                         color:'#C2185B', 
                         underlayColor:'#282828',
-                        onPress: this.props.navigation.openDrawer
+                        onPress: () => this.props.navigation.goBack()
                     }}
                     centerComponent={{ 
                         text: 'BarHop', 
