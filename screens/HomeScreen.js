@@ -1,8 +1,5 @@
 import s from '../styles/global'
-
 import React, { Component } from 'react';
-//import MapView from 'react-native-maps';
-
 import { 
     View,
     Text,
@@ -168,9 +165,7 @@ export default class HomeScreen extends Component {
 
                         />
                     }
-                    // headerHeight={Platform.OS === 'ios' ? 60 : 80}
                     headerHeight={80}
-                    //statusBarHeight={Platform.OS === 'ios' ? 20 : 0}
                     disableHeaderSnap={true}
                 >
                 <GooglePlacesAutocomplete
@@ -418,7 +413,6 @@ const styles = StyleSheet.create({
         borderWidth:0.5, 
         borderColor: '#dddddd',
         borderRadius: 4,
-        // margin: 20
         marginVertical: 10,
         overflow:"hidden"
     }

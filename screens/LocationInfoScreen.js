@@ -4,12 +4,9 @@ import {
     View,
     Text,
     StyleSheet,
-    Dimensions,
-    Image,
-    TouchableOpacity
+    Dimensions
 } from "react-native";
-import { Header, Icon } from 'react-native-elements'
-//import { Header, Left, Right, Icon } from 'native-base'
+import { Header } from 'react-native-elements'
 const { height, width } = Dimensions.get('window');
 
 export default class LocationInfoScreen extends Component {
@@ -28,7 +25,6 @@ export default class LocationInfoScreen extends Component {
                         translucent:true, 
                         barStyle:'light-content'
                     }}
-
                     leftComponent={{ 
                         icon: "chevron-left",
                         color:'#C2185B', 
@@ -42,7 +38,6 @@ export default class LocationInfoScreen extends Component {
                             fontSize: 25 
                         } 
                     }}
-                    //rightComponent={<Icon name="home" color='#fff' />}
                     containerStyle={{
                         height: 80,
                         backgroundColor: '#282828',
@@ -50,9 +45,7 @@ export default class LocationInfoScreen extends Component {
                         borderBottomWidth:1 
                       }}
                     
-                />
-                    
-                    
+                />                    
                     <View style={{marginTop: 20, paddingHorizontal: 20}}>
                         <Text style={styles.title}>
                             {this.params.name}
@@ -66,14 +59,6 @@ export default class LocationInfoScreen extends Component {
                     </View>
                     
                     <Text style={styles.text}>{this.params.name}, {this.params.cost}, {this.params.distance}</Text>
-                    
-                    <TouchableOpacity
-                            onPress={() => this.props.navigation.navigate('Home')}
-                            >
-                            <Text style={styles.home}>Go Home</Text>
-                            
-                        </TouchableOpacity>
-                        
             </View>
         );
     }

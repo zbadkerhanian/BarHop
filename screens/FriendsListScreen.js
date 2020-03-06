@@ -3,12 +3,7 @@ import React, { Component } from "react";
 import { 
     View,
     Text,
-    StyleSheet,
-    Platform,
-    StatusBar,
-    Switch,
-    TouchableOpacity,
-    
+    StyleSheet    
 } from "react-native";
 import { Header, Icon } from 'react-native-elements'
 //import { Header, Left, Right, Icon } from 'native-base'
@@ -22,7 +17,6 @@ export default class FriendsListScreen extends Component {
         return (
             <View style={[s.global, styles.container]}>
                 <Header
-                     //backgroundColor='#282828'   
                     statusBarProps={{ 
                         backgroundColor:'#202020', 
                         translucent:true, 
@@ -41,7 +35,6 @@ export default class FriendsListScreen extends Component {
                             fontSize: 25 
                         } 
                     }}
-                    //rightComponent={<Icon name="home" color='#fff' />}
                     containerStyle={{
                         height: 80,
                         backgroundColor: '#282828',
@@ -55,7 +48,6 @@ export default class FriendsListScreen extends Component {
                             <Text style={styles.text}>Friends List</Text>
                     </View> 
                 </View> 
-                {/* <StatusBar backgroundColor="white" barStyle="dark-content"/> */}
             </View>
         );
     }

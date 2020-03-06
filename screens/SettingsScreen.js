@@ -7,7 +7,6 @@ import {
     TouchableOpacity
 } from "react-native";
 import { Header, Icon } from 'react-native-elements'
-//import { Header, Left, Right, Icon } from 'native-base'
 
 export default class SettingsScreen extends Component {
     state={
@@ -17,15 +16,11 @@ export default class SettingsScreen extends Component {
         return (
             <View style={[s.global, styles.container]}>
                 <Header
-                     //backgroundColor='#282828'   
                     statusBarProps={{ 
                         backgroundColor:'#202020', 
                         translucent:true, 
                         barStyle:'light-content'
                     }}
-
-                    //leftComponent={{ icon: 'menu', color: '#fff' }}
-                    //leftComponent={ <Icon name="menu" color='#fff' underlayColor='#282828' onPress={() => {this.props.navigation.openDrawer()}}/>}
                     leftComponent={{ 
                         icon: "menu",
                         color:'#C2185B', 
@@ -39,7 +34,6 @@ export default class SettingsScreen extends Component {
                             fontSize: 25 
                         } 
                     }}
-                    //rightComponent={<Icon name="home" color='#fff' />}
                     containerStyle={{
                         height: 80,
                         backgroundColor: '#282828',
@@ -50,27 +44,19 @@ export default class SettingsScreen extends Component {
                 />
                 <View style={{flex: 1,flexDirection:'row'}}>
                     <View style={{flex:4,flexDirection:'column'}}>
-                        <TouchableOpacity
-                            onPress={() => this.props.navigation.navigate('Notifications')}
-                            
-                            >
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Notifications')}>
                             <Text style={styles.text}>Notifications</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity
-                            onPress={() => this.props.navigation.navigate('Privacy')}
-                            >
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Privacy')}>
                             <Text style={styles.text}>Privacy</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity
-                            onPress={() => this.props.navigation.navigate('Security')}
-                            >
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Security')}>
                             <Text style={styles.text}>Security</Text>
                         </TouchableOpacity>
                     </View>
                     <View style={{flex:1,flexDirection:'column'}}>
                     </View>    
                 </View> 
-                {/* <StatusBar backgroundColor="white" barStyle="dark-content"/> */}
             </View>
         );
     }

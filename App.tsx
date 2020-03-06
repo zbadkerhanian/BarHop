@@ -15,44 +15,16 @@ import SettingsScreen from './screens/SettingsScreen'
 import NotificationsScreen from './screens/NotificationsScreen'
 import PrivacyScreen from './screens/PrivacyScreen'
 import SecurityScreen from './screens/SecurityScreen'
-import Constants from 'expo-constants'
 
-const StackNav = createStackNavigator();
 
-function HomeStack() {
+export default function App() {
   return (
-    <StackNav.Navigator
-      initialRouteName="Home"
-      screenOptions={{headerShown: false}}>
-      <StackNav.Screen name="Home" component={HomeScreen} />
-      <StackNav.Screen name="LocationInfo" component={LocationInfoScreen} />
-    </StackNav.Navigator>
+    <NavigationContainer>
+      <Drawer></Drawer>
+    </NavigationContainer>
   );
 }
 
-function AccountStack() {
-  return (
-    <StackNav.Navigator
-      initialRouteName="Account"
-      screenOptions={{headerShown: false}}>
-      <StackNav.Screen name="Account" component={AccountScreen} />
-      <StackNav.Screen name="Friends" component={FriendsListScreen} />
-    </StackNav.Navigator>
-  );
-}
-
-function SettingsStack() {
-  return (
-    <StackNav.Navigator
-      initialRouteName="Settings"
-      screenOptions={{headerShown: false}}>
-      <StackNav.Screen name="Settings" component={SettingsScreen}/>
-      <StackNav.Screen name="Notifications" component={NotificationsScreen} />
-      <StackNav.Screen name="Privacy" component={PrivacyScreen} />
-      <StackNav.Screen name="Security" component={SecurityScreen} />
-    </StackNav.Navigator>
-  );
-}
 
 const DrawerNav = createDrawerNavigator();
 
@@ -72,17 +44,6 @@ function Drawer() {
   )
 }
 
-function App() {
-  return (
-    <NavigationContainer>
-      <Drawer></Drawer>
-    </NavigationContainer>
-  );
-}
-
-export default App;
-
-
 const CustomDrawerContent = (props) => (
   <DrawerContentScrollView {...props} style={{backgroundColor:'#282828',height:Dimensions.get('window').height}}>
       <View style={{height: 150, alignItems:'center', justifyContent:'center'}}>
@@ -95,11 +56,46 @@ const CustomDrawerContent = (props) => (
   </DrawerContentScrollView>
 )
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
+const HomeStackNav = createStackNavigator();
+
+function HomeStack() {
+  return (
+    <HomeStackNav.Navigator
+      initialRouteName="Home"
+      screenOptions={{headerShown: false}}>
+      <HomeStackNav.Screen name="Home" component={HomeScreen} />
+      <HomeStackNav.Screen name="LocationInfo" component={LocationInfoScreen} />
+    </HomeStackNav.Navigator>
+  );
+}
+
+
+const AccountStackNav = createStackNavigator();
+
+function AccountStack() {
+  return (
+    <AccountStackNav.Navigator
+      initialRouteName="Account"
+      screenOptions={{headerShown: false}}>
+      <AccountStackNav.Screen name="Account" component={AccountScreen} />
+      <AccountStackNav.Screen name="Friends" component={FriendsListScreen} />
+    </AccountStackNav.Navigator>
+  );
+}
+
+
+const SettingsStackNav = createStackNavigator();
+
+function SettingsStack() {
+  return (
+    <SettingsStackNav.Navigator
+      initialRouteName="Settings"
+      screenOptions={{headerShown: false}}>
+      <SettingsStackNav.Screen name="Settings" component={SettingsScreen}/>
+      <SettingsStackNav.Screen name="Notifications" component={NotificationsScreen} />
+      <SettingsStackNav.Screen name="Privacy" component={PrivacyScreen} />
+      <SettingsStackNav.Screen name="Security" component={SecurityScreen} />
+    </SettingsStackNav.Navigator>
+  );
+}
