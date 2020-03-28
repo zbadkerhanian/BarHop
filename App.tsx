@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Image, StyleSheet, SafeAreaView, Dimensions } from 'react-native';
+import { View, Image, Dimensions } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import {
@@ -7,14 +7,16 @@ import {
   DrawerItemList
 } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from './screens/HomeScreen'
-import LocationInfoScreen from './screens/LocationInfoScreen'
-import AccountScreen from './screens/AccountScreen'
-import FriendsListScreen from './screens/FriendsListScreen'
-import SettingsScreen from './screens/SettingsScreen'
-import NotificationsScreen from './screens/NotificationsScreen'
-import PrivacyScreen from './screens/PrivacyScreen'
-import SecurityScreen from './screens/SecurityScreen'
+import HomeScreen from './src/screens/HomeScreen'
+import LocationInfoScreen from './src/screens/LocationInfoScreen'
+import AccountScreen from './src/screens/AccountScreen'
+import FriendsListScreen from './src/screens/FriendsListScreen'
+import SettingsScreen from './src/screens/SettingsScreen'
+import NotificationsScreen from './src/screens/NotificationsScreen'
+import PrivacyScreen from './src/screens/PrivacyScreen'
+import SecurityScreen from './src/screens/SecurityScreen'
+import Login from './src/screens/Login';
+import Signup from './src/screens/Signup';
 
 
 export default function App() {
@@ -31,7 +33,7 @@ const DrawerNav = createDrawerNavigator();
 function Drawer() {
   return(
     <DrawerNav.Navigator 
-      initialRouteName = 'home'
+      initialRouteName = "Home"
       drawerContent={props => <CustomDrawerContent {...props}/>} 
       drawerContentOptions={{
         activeTintColor: '#e91e63',
@@ -48,7 +50,7 @@ const CustomDrawerContent = (props) => (
   <DrawerContentScrollView {...props} style={{backgroundColor:'#282828',height:Dimensions.get('window').height}}>
       <View style={{height: 150, alignItems:'center', justifyContent:'center'}}>
         <View style={{alignItems:'center', justifyContent:'center', borderRadius:60,height:120,width:120, overflow:"hidden"}}>
-          <Image source={require('./assets/profile-photo.jpg')} style={{ height: 160, width: 160 }}/>
+          <Image source={require('./src/assets/profile-photo.jpg')} style={{ height: 160, width: 160 }}/>
           {/* <Image source={{ uri: global.photoUrl }} style={{ height: 160, width: 160 }}/> */}
         </View>
       </View>
@@ -65,6 +67,8 @@ function HomeStack() {
       initialRouteName="Home"
       screenOptions={{headerShown: false}}>
       <HomeStackNav.Screen name="Home" component={HomeScreen} />
+      <HomeStackNav.Screen name="Login" component={Login} />
+      <HomeStackNav.Screen name="Signup" component={Signup} />
       <HomeStackNav.Screen name="LocationInfo" component={LocationInfoScreen} />
     </HomeStackNav.Navigator>
   );

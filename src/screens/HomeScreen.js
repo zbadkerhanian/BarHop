@@ -155,6 +155,13 @@ export default class HomeScreen extends Component {
                                     } 
                                 }
                             }
+
+                            rightComponent={{ 
+                                icon: 'menu',
+                                color: '#C2185B', 
+                                underlayColor: '#282828',
+                                onPress: () => this.props.navigation.navigate('Login')
+                            }}
             
                             containerStyle={{
                                 height: 80,
