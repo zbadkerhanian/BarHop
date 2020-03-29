@@ -25,6 +25,8 @@ export default class Signup extends Component {
       firstNameValidated:true,
       lastName:'',
       lastNameValidated:true,
+      username:'',
+      usernameValidated:true,
       email:'',
       emailValidated:true,
       password:'',
@@ -43,6 +45,11 @@ export default class Signup extends Component {
       case 'lastName':
         this.setState({
           lastNameValidated: (this.alph.test(text)) ? true : false
+        })
+        break;
+      case 'username':
+        this.setState({
+          usernameValidated: (this.alph.test(text)) ? true : false
         })
         break;
       case 'password':
@@ -85,57 +92,81 @@ export default class Signup extends Component {
                       }}
                     
                 />
-      <View style={styles.container}>
-        <Logo/>
         <View style={styles.container}>
-          <TextInput style={[styles.inputBox, !this.state.firstNameValidated? styles.error:null]}
-            onChangeText={(text)=>this.validate(text,'firstName')}
-            underlineColorAndroid='rgba(0,0,0,0)'
-            placeholder="First Name"
-            placeholderTextColor = "#ffffff"
-            errorMessages={['This field is required']}
-            selectionColor="#fff"
-            onSubmitEditing={()=> this.lastName.focus()}
-          />
-          <TextInput style={[styles.inputBox, !this.state.lastNameValidated? styles.error:null]}
-            onChangeText={(text)=>this.validate(text,'lastName')}
-            underlineColorAndroid='rgba(0,0,0,0)'
-            placeholder="Last Name"
-            placeholderTextColor = "#ffffff"
-            errorMessages={['This field is required']}
-            selectionColor="#fff"
-            ref={(input) => this.lastName = input}
-            onSubmitEditing={()=> this.email.focus()}
-          />
-          <TextInput style={[styles.inputBox, !this.state.emailValidated? styles.error:null]}
-            onChangeText={(text)=>this.validate(text,'email')}
-            underlineColorAndroid='rgba(0,0,0,0)'
-            placeholder="Email"
-            placeholderTextColor = "#ffffff"
-            selectionColor="#fff"
-            keyboardType="email-address"
-            ref={(input) => this.email = input}
-            onSubmitEditing={()=> this.password.focus()}
-          />
-          <TextInput style={[styles.inputBox, !this.state.passwordValidated? styles.error:null]}
-            onChangeText={(text)=>this.validate(text,'password')}
-            underlineColorAndroid='rgba(0,0,0,0)'
-            placeholder="Password"
-            secureTextEntry={true}
-            placeholderTextColor = "#ffffff"
-            ref={(input) => this.password = input}
-          />
-           <TouchableOpacity style={styles.button} >
-             <Text style={styles.buttonText}>Signup</Text>
-           </TouchableOpacity>
-  		  </View>
-        <View style={styles.signupTextCont}>
-          <Text style={styles.signupText}>Already have an account?</Text>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('Login')}>
-            <Text style={styles.signupButton}> Sign in</Text>
-          </TouchableOpacity>
+          <Logo/>
+          <View style={styles.container}>
+            <TextInput style={[styles.inputBox, !this.state.firstNameValidated? styles.error:null]}
+              autoCompleteType='name' 
+              textContentType='givenName'
+              onChangeText={(text)=>this.validate(text,'firstName')}
+              underlineColorAndroid='rgba(0,0,0,0)'
+              placeholder="First Name"
+              placeholderTextColor = "#ffffff"
+              errorMessages={['This field is required']}
+              returnKeyType='next'
+              //selectionColor="#fff"
+              onSubmitEditing={()=> this.lastName.focus()}
+            />
+            <TextInput style={[styles.inputBox, !this.state.lastNameValidated? styles.error:null]}
+              autoCompleteType='name' 
+              textContentType='familyName'
+              onChangeText={(text)=>this.validate(text,'lastName')}
+              underlineColorAndroid='rgba(0,0,0,0)'
+              placeholder="Last Name"
+              placeholderTextColor = "#ffffff"
+              errorMessages={['This field is required']}
+              returnKeyType='next'
+              ref={(input) => this.lastName = input}
+              onSubmitEditing={()=> this.username.focus()}
+            />
+            <TextInput style={[styles.inputBox, !this.state.usernameValidated? styles.error:null]}
+              autoCompleteType='username' 
+              textContentType='username'
+              onChangeText={(text)=>this.validate(text,'username')}
+              underlineColorAndroid='rgba(0,0,0,0)'
+              placeholder="Username"
+              placeholderTextColor = "#ffffff"
+              errorMessages={['This field is required']}
+              returnKeyType='next'
+              ref={(input) => this.username = input}
+              onSubmitEditing={()=> this.email.focus()}
+            />
+            <TextInput style={[styles.inputBox, !this.state.emailValidated? styles.error:null]}
+              autoCompleteType='email' 
+              textContentType='emailAddress'
+              onChangeText={(text)=>this.validate(text,'email')}
+              underlineColorAndroid='rgba(0,0,0,0)'
+              placeholder="Email"
+              placeholderTextColor = "#ffffff"
+              errorMessages={['This field is required']}
+              returnKeyType='next'
+              keyboardType="email-address"
+              ref={(input) => this.email = input}
+              onSubmitEditing={()=> this.password.focus()}
+            />
+            <TextInput style={[styles.inputBox, !this.state.passwordValidated? styles.error:null]}
+              autoCompleteType='password' 
+              textContentType='newPassword'
+              onChangeText={(text)=>this.validate(text,'password')}
+              underlineColorAndroid='rgba(0,0,0,0)'
+              placeholder="Password"
+              secureTextEntry={true}
+              placeholderTextColor = "#ffffff"
+              errorMessages={['This field is required']}
+              returnKeyType='go'
+              ref={(input) => this.password = input}
+            />
+            <TouchableOpacity style={styles.button} >
+              <Text style={styles.buttonText}>Signup</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.signupTextCont}>
+            <Text style={styles.signupText}>Already have an account?</Text>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('Login')}>
+              <Text style={styles.signupButton}> Sign in</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
       </View>
     )
   }

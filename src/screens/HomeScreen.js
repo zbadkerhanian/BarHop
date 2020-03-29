@@ -32,7 +32,7 @@ const LocationInfo = [
       cost:"$",
       distance:'1.1 miles',
       image:<Image style={{ flex:1, width:null, height:null, resizeMode:'cover' }}
-        source={require('../assets/Tiki_Ti.jpg')}/>,
+        source={require('../../assets/Tiki_Ti.jpg')}/>,
       description:<Text>The Tiki Ti is a Polynesian-themed tiki bar on Sunset Boulevard, in the Los Feliz district of Los Angeles. It is considered by many to be the very epitome of the Tiki tavern style.</Text>
     },
     {
@@ -41,7 +41,7 @@ const LocationInfo = [
       cost:'$$',
       distance:'1.2 miles',
       image:<Image style={{ flex:1, width:null, height:null, resizeMode:'cover' }}
-        source={require('../assets/The_Varnish.jpg')}/>,
+        source={require('../../assets/The_Varnish.jpg')}/>,
       description:<Text>Mixologists handcraft custom cocktails at this dark, moody speakeasy hidden behind Cole's bar.</Text>
     },
     {
@@ -50,7 +50,7 @@ const LocationInfo = [
         cost:'$$$',
         distance:'1.3 miles',
         image:<Image style={{ flex:1, width:null, height:null, resizeMode:'cover' }}
-            source={require('../assets/Frolic_Room.jpg')}/>,
+            source={require('../../assets/Frolic_Room.jpg')}/>,
         description:<Text>Photos of movie stars deck the walls at this historic, no-frills bar, famous for its jukebox.</Text>
     },
   ];
@@ -156,12 +156,15 @@ export default class HomeScreen extends Component {
                                 }
                             }
 
-                            rightComponent={{ 
-                                icon: 'menu',
-                                color: '#C2185B', 
-                                underlayColor: '#282828',
-                                onPress: () => this.props.navigation.navigate('Login')
-                            }}
+                            rightComponent={
+                                <Icon
+                                    name='user'
+                                    type='font-awesome'
+                                    color='#C2185B'
+                                    //color='#f50'
+                                    underlayColor= '#282828'
+                                    onPress={() => {console.log('hello'); this.props.navigation.navigate('Login')}} />
+                            }
             
                             containerStyle={{
                                 height: 80,
@@ -243,7 +246,7 @@ export default class HomeScreen extends Component {
                                             <View style={{height: 130, width: 130, marginLeft: 20,
                                             borderWidth: 0.5, borderColor: '#dddddd', borderRadius: 4, overflow:"hidden"}}>
                                                 <View style={{ flex: 2}}>
-                                                    <Image source={require('../assets/Bars.jpg')}
+                                                    <Image source={require('../../assets/Bars.jpg')}
                                                     style={{ flex: 1, width: null, height: null, 
                                                     resizeMode: 'cover'}}
                                                         />
@@ -258,7 +261,7 @@ export default class HomeScreen extends Component {
                                         <View style={{height: 130, width: 130, marginLeft: 20,
                                             borderWidth: 0.5, borderColor: '#dddddd', borderRadius: 4}}>
                                             <View style={{ flex: 2}}>
-                                                <Image source={require('../assets/Clubs.jpg')}
+                                                <Image source={require('../../assets/Clubs.jpg')}
                                                     style={{ flex: 1, width: null, height: null, 
                                                     resizeMode: 'cover'}}
                                                     />
@@ -273,7 +276,7 @@ export default class HomeScreen extends Component {
                                         <View style={{height: 130, width: 130, marginLeft: 20,
                                             borderWidth: 0.5, borderColor: '#dddddd', borderRadius: 4}}>
                                             <View style={{ flex: 2}}>
-                                                <Image source={require('../assets/Lounges.jpg')}
+                                                <Image source={require('../../assets/Lounges.jpg')}
                                                     style={{ flex: 1, width: null, height: null, 
                                                     resizeMode: 'cover'}}
                                                     />

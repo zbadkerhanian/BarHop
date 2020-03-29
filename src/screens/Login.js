@@ -80,20 +80,26 @@ export default class Login extends Component {
           <Logo/>
         <View style={styles.container}>
           <TextInput style={[styles.inputBox, !this.state.emailValidated? styles.error:null]}
+            autoCompleteType='email' 
+            textContentType='emailAddress'
             onChangeText={(text)=>this.validate(text,'email')}
             underlineColorAndroid='rgba(0,0,0,0)'
             placeholder="Email"
             placeholderTextColor = "#ffffff"
-            selectionColor="#fff"
+            errorMessages={['This field is required']}
+            returnKeyType='next'
             keyboardType="email-address"
             onSubmitEditing={()=> this.password.focus()}
           />
           <TextInput style={[styles.inputBox, !this.state.passwordValidated? styles.error:null]}
             onChangeText={(text)=>this.validate(text,'password')}
+            textContentType='password'
             underlineColorAndroid='rgba(0,0,0,0)'
             placeholder="Password"
             secureTextEntry={true}
             placeholderTextColor = "#ffffff"
+            errorMessages={['This field is required']}
+            returnKeyType='go'
             ref={(input) => this.password = input}
           />
           <TouchableOpacity style={styles.button} >
