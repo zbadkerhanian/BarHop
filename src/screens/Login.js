@@ -5,7 +5,8 @@ import {
   Text,
   View,
   TouchableOpacity,
-  TextInput
+  TextInput,
+  Alert
 } from 'react-native';
 import { Header, Icon } from 'react-native-elements'
 
@@ -13,9 +14,9 @@ import Logo from '../components/Logo';
 
 
 export default class Login extends Component {
-
-  pass=/^.{6,20}$/
-  emailAdd=/^.+\@.+\..+$/
+  pass=/^.{6,20}$/;
+  emailAdd=/^.+\@.+\..+$/;
+  errors=[];
 
   constructor(props) {
     super(props)
@@ -27,20 +28,52 @@ export default class Login extends Component {
     }
   }
 
-  validate(text,type)
-  {
+  validate(text,type){
     switch(type){
-      case 'password':
-        this.setState({
-          passwordValidated: (this.pass.test(text)) ? true : false
-        })
-        break;
       case 'email':
         this.setState({
+          email: text,
           emailValidated: (this.emailAdd.test(text)) ? true : false
         })
         break;
+      case 'password':
+        this.setState({
+          password: text,
+          passwordValidated: (this.pass.test(text)) ? true : false
+        })
+        break;
     }
+  }
+
+  submit(){
+    console.log("SUBMIT")
+    let ready = true;
+    if(this.state.email.length == 0){
+      ready = false;
+      this.errors.push("Email cannot be empty.")
+    }
+    if(!this.state.emailValidated){
+      ready = false;
+      this.errors.push("Enter a valid email address.")
+    }
+    if(this.state.password == 0){
+      ready = false;
+      this.errors.push("Password cannot be empty.")
+    }
+    if(!this.state.passwordValidated){
+      ready = false;
+      this.errors.push("Password must be at least 6 characters.")
+    }
+    this.displayErrors();
+    if(ready){
+      console.log("send to api");
+    }
+  }
+
+  displayErrors(){
+    if(this.errors.length != 0)
+      Alert.alert('', this.errors.join('\n'));
+    this.errors=[];
   }
 
   render(){
@@ -102,7 +135,7 @@ export default class Login extends Component {
             returnKeyType='go'
             ref={(input) => this.password = input}
           />
-          <TouchableOpacity style={styles.button} >
+          <TouchableOpacity style={styles.button} onPress={() => this.submit()} >
             <Text style={styles.buttonText}>Login</Text>
           </TouchableOpacity>
   		  </View>

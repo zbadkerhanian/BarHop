@@ -5,7 +5,8 @@ import {
   Text,
   View,
   TouchableOpacity,
-  TextInput
+  TextInput,
+  Alert
 } from 'react-native';
 
 import Logo from '../components/Logo';
@@ -13,10 +14,12 @@ import Logo from '../components/Logo';
 import { Header, Icon } from 'react-native-elements'
 
 export default class Signup extends Component {
-
+  validated;
   alph=/^[a-zA-Z].{2,50}$/
-  pass=/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/
+  pass=/^.{6,20}$/;
+  //pass=/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/
   emailAdd=/^.+\@.+\..+$/
+  errors=[];
 
   constructor(props) {
     super(props)
@@ -39,32 +42,91 @@ export default class Signup extends Component {
     switch(type){
       case 'firstName':
         this.setState({
+          firstName: text,
           firstNameValidated: (this.alph.test(text)) ? true : false
         })
         break;
       case 'lastName':
         this.setState({
+          lastName: text,
           lastNameValidated: (this.alph.test(text)) ? true : false
         })
         break;
       case 'username':
         this.setState({
+          username: text,
           usernameValidated: (this.alph.test(text)) ? true : false
-        })
-        break;
-      case 'password':
-        this.setState({
-          passwordValidated: (this.pass.test(text)) ? true : false
         })
         break;
       case 'email':
         this.setState({
+          email: text,
           emailValidated: (this.emailAdd.test(text)) ? true : false
+        })
+        break;
+      case 'password':
+        this.setState({
+          password: text,
+          passwordValidated: (this.pass.test(text)) ? true : false
         })
         break;
     }
   }
 
+  submit(){
+    console.log("SUBMIT")
+    let ready = true;
+    if(this.state.firstName.length == 0){
+      ready = false;
+      this.errors.push("First Name cannot be empty.")
+    }
+    if(!this.state.firstNameValidated){
+      ready = false;
+      this.errors.push("Enter a valid First Name.")
+    }
+    if(this.state.lastName.length == 0){
+      ready = false;
+      this.errors.push("Last Name cannot be empty.")
+    }
+    if(!this.state.lastNameValidated){
+      ready = false;
+      this.errors.push("Enter a valid Last Name.")
+    }
+    if(this.state.username.length == 0){
+      ready = false;
+      this.errors.push("Username cannot be empty.")
+    }
+    if(!this.state.usernameValidated){
+      ready = false;
+      this.errors.push("Username must consist of letters only.")
+    }
+    if(this.state.email.length == 0){
+      ready = false;
+      this.errors.push("Email cannot be empty.")
+    }
+    if(!this.state.emailValidated){
+      ready = false;
+      this.errors.push("Enter a valid email address.")
+    }
+    if(this.state.password == 0){
+      ready = false;
+      this.errors.push("Password cannot be empty.")
+    }
+    if(!this.state.passwordValidated){
+      ready = false;
+      this.errors.push("Password must be at least 6 characters.")
+    }
+    this.displayErrors();
+    if(ready){
+      console.log("send to api");
+    }
+  }
+
+  displayErrors(){
+    if(this.errors.length != 0)
+      Alert.alert('', this.errors.join('\n'));
+    this.errors=[];
+  }
 
   render(){
     state={
@@ -156,7 +218,7 @@ export default class Signup extends Component {
               returnKeyType='go'
               ref={(input) => this.password = input}
             />
-            <TouchableOpacity style={styles.button} >
+            <TouchableOpacity style={styles.button} onPress={() => this.submit()}>
               <Text style={styles.buttonText}>Signup</Text>
             </TouchableOpacity>
           </View>
@@ -191,7 +253,7 @@ const styles = StyleSheet.create({
   },
   signupText: {
   	color:'rgba(255,255,255,0.6)',
-  	fontSize:16
+    fontSize:16
   },
   signupButton: {
   	color:'#ffffff',
@@ -206,7 +268,7 @@ const styles = StyleSheet.create({
     fontSize:16,
     color:'#ffffff',
     marginVertical: 10,
-    paddingVertical: 14
+    paddingVertical: 10
   },
   button: {
     width:300,
