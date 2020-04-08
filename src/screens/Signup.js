@@ -6,12 +6,12 @@ import {
   View,
   TouchableOpacity,
   TextInput,
-  Alert
+  Alert,
+  ScrollView
 } from 'react-native';
-
 import Logo from '../components/Logo';
-
 import { Header, Icon } from 'react-native-elements'
+import {ScreenDimensions} from '../global_functions/Utilities';
 
 export default class Signup extends Component {
   validated;
@@ -129,11 +129,8 @@ export default class Signup extends Component {
   }
 
   render(){
-    state={
-      switchNotifications:false
-  }
     return(
-      <View style={[s.global, styles.container1]}>
+      <View style={[s.global]}>
                 <Header
                     statusBarProps={{ 
                         backgroundColor:'#202020', 
@@ -154,95 +151,95 @@ export default class Signup extends Component {
                       }}
                     
                 />
-        <View style={styles.container}>
-          <Logo/>
+        <ScrollView>
           <View style={styles.container}>
-            <TextInput style={[styles.inputBox, !this.state.firstNameValidated? styles.error:null]}
-              autoCompleteType='name' 
-              textContentType='givenName'
-              onChangeText={(text)=>this.validate(text,'firstName')}
-              underlineColorAndroid='rgba(0,0,0,0)'
-              placeholder="First Name"
-              placeholderTextColor = "#ffffff"
-              errorMessages={['This field is required']}
-              returnKeyType='next'
-              //selectionColor="#fff"
-              onSubmitEditing={()=> this.lastName.focus()}
-            />
-            <TextInput style={[styles.inputBox, !this.state.lastNameValidated? styles.error:null]}
-              autoCompleteType='name' 
-              textContentType='familyName'
-              onChangeText={(text)=>this.validate(text,'lastName')}
-              underlineColorAndroid='rgba(0,0,0,0)'
-              placeholder="Last Name"
-              placeholderTextColor = "#ffffff"
-              errorMessages={['This field is required']}
-              returnKeyType='next'
-              ref={(input) => this.lastName = input}
-              onSubmitEditing={()=> this.username.focus()}
-            />
-            <TextInput style={[styles.inputBox, !this.state.usernameValidated? styles.error:null]}
-              autoCompleteType='username' 
-              textContentType='username'
-              onChangeText={(text)=>this.validate(text,'username')}
-              underlineColorAndroid='rgba(0,0,0,0)'
-              placeholder="Username"
-              placeholderTextColor = "#ffffff"
-              errorMessages={['This field is required']}
-              returnKeyType='next'
-              ref={(input) => this.username = input}
-              onSubmitEditing={()=> this.email.focus()}
-            />
-            <TextInput style={[styles.inputBox, !this.state.emailValidated? styles.error:null]}
-              autoCompleteType='email' 
-              textContentType='emailAddress'
-              onChangeText={(text)=>this.validate(text,'email')}
-              underlineColorAndroid='rgba(0,0,0,0)'
-              placeholder="Email"
-              placeholderTextColor = "#ffffff"
-              errorMessages={['This field is required']}
-              returnKeyType='next'
-              keyboardType="email-address"
-              ref={(input) => this.email = input}
-              onSubmitEditing={()=> this.password.focus()}
-            />
-            <TextInput style={[styles.inputBox, !this.state.passwordValidated? styles.error:null]}
-              autoCompleteType='password' 
-              textContentType='newPassword'
-              onChangeText={(text)=>this.validate(text,'password')}
-              underlineColorAndroid='rgba(0,0,0,0)'
-              placeholder="Password"
-              secureTextEntry={true}
-              placeholderTextColor = "#ffffff"
-              errorMessages={['This field is required']}
-              returnKeyType='go'
-              ref={(input) => this.password = input}
-            />
-            <TouchableOpacity style={styles.button} onPress={() => this.submit()}>
-              <Text style={styles.buttonText}>Signup</Text>
-            </TouchableOpacity>
+            <Logo/>
+            <View>
+              <TextInput style={[styles.inputBox, !this.state.firstNameValidated? styles.error:null]}
+                autoCompleteType='name' 
+                textContentType='givenName'
+                onChangeText={(text)=>this.validate(text,'firstName')}
+                underlineColorAndroid='rgba(0,0,0,0)'
+                placeholder="First Name"
+                placeholderTextColor = "#ffffff"
+                errorMessages={['This field is required']}
+                returnKeyType='next'
+                //selectionColor="#fff"
+                onSubmitEditing={()=> this.lastName.focus()}
+              />
+              <TextInput style={[styles.inputBox, !this.state.lastNameValidated? styles.error:null]}
+                autoCompleteType='name' 
+                textContentType='familyName'
+                onChangeText={(text)=>this.validate(text,'lastName')}
+                underlineColorAndroid='rgba(0,0,0,0)'
+                placeholder="Last Name"
+                placeholderTextColor = "#ffffff"
+                errorMessages={['This field is required']}
+                returnKeyType='next'
+                ref={(input) => this.lastName = input}
+                onSubmitEditing={()=> this.username.focus()}
+              />
+              <TextInput style={[styles.inputBox, !this.state.usernameValidated? styles.error:null]}
+                autoCompleteType='username' 
+                textContentType='username'
+                onChangeText={(text)=>this.validate(text,'username')}
+                underlineColorAndroid='rgba(0,0,0,0)'
+                placeholder="Username"
+                placeholderTextColor = "#ffffff"
+                errorMessages={['This field is required']}
+                returnKeyType='next'
+                ref={(input) => this.username = input}
+                onSubmitEditing={()=> this.email.focus()}
+              />
+              <TextInput style={[styles.inputBox, !this.state.emailValidated? styles.error:null]}
+                autoCompleteType='email' 
+                textContentType='emailAddress'
+                onChangeText={(text)=>this.validate(text,'email')}
+                underlineColorAndroid='rgba(0,0,0,0)'
+                placeholder="Email"
+                placeholderTextColor = "#ffffff"
+                errorMessages={['This field is required']}
+                returnKeyType='next'
+                keyboardType="email-address"
+                ref={(input) => this.email = input}
+                onSubmitEditing={()=> this.password.focus()}
+              />
+              <TextInput style={[styles.inputBox, !this.state.passwordValidated? styles.error:null]}
+                autoCompleteType='password' 
+                textContentType='newPassword'
+                onChangeText={(text)=>this.validate(text,'password')}
+                underlineColorAndroid='rgba(0,0,0,0)'
+                placeholder="Password"
+                secureTextEntry={true}
+                placeholderTextColor = "#ffffff"
+                errorMessages={['This field is required']}
+                returnKeyType='go'
+                ref={(input) => this.password = input}
+              />
+              <TouchableOpacity style={styles.button} onPress={() => this.submit()}>
+                <Text style={styles.buttonText}>Sign Up</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.signupTextCont}>
+              <Text style={styles.signupText}>Already have an account?</Text>
+              <TouchableOpacity onPress={() => this.props.navigation.navigate('Login')}>
+                <Text style={styles.signupButton}> Sign in</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-          <View style={styles.signupTextCont}>
-            <Text style={styles.signupText}>Already have an account?</Text>
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('Login')}>
-              <Text style={styles.signupButton}> Sign in</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
+        </ScrollView>
       </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  container1:{
-    flex: 1
-  },
   container: {
     flexGrow: 1,
     backgroundColor: "#455a64",
     alignItems: "center",
-    justifyContent: "flex-start"
+    justifyContent: "flex-start",
+    paddingBottom: 40
   },
   signupTextCont : {
   	flexGrow: 1,
