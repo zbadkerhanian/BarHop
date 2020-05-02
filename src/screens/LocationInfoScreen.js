@@ -7,6 +7,8 @@ import {
     Dimensions
 } from "react-native";
 import { Header } from 'react-native-elements'
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 const { height, width } = Dimensions.get('window');
 
 export default class LocationInfoScreen extends Component {
@@ -46,10 +48,20 @@ export default class LocationInfoScreen extends Component {
                       }}
                     
                 />                    
-                    <View style={{marginTop: 20, paddingHorizontal: 20}}>
+                <View style={{ marginTop: 20, paddingHorizontal: 20 }}>
+                    <View style={{ flexDirection: "row", justifyContent: 'space-between' }}>
                         <Text style={styles.title}>
                             {this.params.name}
-                        </Text>
+                    </Text>
+
+                                                    
+                                                    <Icon name={!this.params.favorite? "heart-o" : "heart"} size={30} color="#C2185B" onPress={() => {
+                                                            this.params.favorite = !this.params.favorite;
+                                                                this.forceUpdate();
+                                                             }}></Icon>
+                                                   
+                                                    </View>
+                        
                         <View style={{width:width-40, height: 200, marginTop: 20}}>
                             {this.params.image}
                         </View>
@@ -58,7 +70,13 @@ export default class LocationInfoScreen extends Component {
                         </Text>
                     </View>
                     
-                    <Text style={styles.text}>{this.params.name}, {this.params.cost}, {this.params.distance}</Text>
+                <Text style={styles.text}>{this.params.name}, {this.params.cost}, {this.params.distance}</Text>
+                <TouchableOpacity style={{backgroundColor: '#C2185B', marginTop: 20, padding: 5}} onPress={() => {
+                                                            this.params.inQueue = !this.params.inQueue;
+                                                                this.forceUpdate();
+                                                             }}>
+                    <Text style={styles.buttonText}>{!this.params.inQueue ? "Add to" : "Remove from"} Night</Text>
+                </TouchableOpacity>
             </View>
         );
     }
@@ -88,4 +106,10 @@ const styles = StyleSheet.create({
         fontWeight: '700', 
         color: 'white'
     },
+    buttonText: {
+        alignSelf: 'center', 
+        color: 'white',
+        fontSize: 20,
+        margin: 5
+    }
 });

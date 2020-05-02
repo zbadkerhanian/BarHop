@@ -12,15 +12,20 @@ import {
     SafeAreaView,
     ScrollView,
     Dimensions,
-    Linking
+    Linking,
+    ImageBackground
 } from 'react-native';
-import { Header, Icon } from '../react-native-elements';
+//import { Header, Icon } from '../react-native-elements';
+import { Header} from '../react-native-elements';
 import {Utilities} from '../global_functions/Utilities';
 import { CollapsibleHeaderScrollView } from 'react-native-collapsible-header-views';
 import { GooglePlacesAutocomplete, dataJSON } from '../react-native-google-places-autocomplete';
 import Constants from 'expo-constants';
 import StarRating from 'react-native-star-rating'
 import ModalDropdown from 'react-native-modal-dropdown'
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+
 
 
 const { height, width } = Dimensions.get('window');
@@ -33,7 +38,8 @@ const LocationInfo = [
       distance:'1.1 miles',
       image:<Image style={{ flex:1, width:null, height:null, resizeMode:'cover' }}
         source={require('../../assets/Tiki_Ti.jpg')}/>,
-      description:<Text>The Tiki Ti is a Polynesian-themed tiki bar on Sunset Boulevard, in the Los Feliz district of Los Angeles. It is considered by many to be the very epitome of the Tiki tavern style.</Text>
+      description:<Text>The Tiki Ti is a Polynesian-themed tiki bar on Sunset Boulevard, in the Los Feliz district of Los Angeles. It is considered by many to be the very epitome of the Tiki tavern style.</Text>,
+
     },
     {
       name: 'The Varnish',
@@ -42,7 +48,8 @@ const LocationInfo = [
       distance:'1.2 miles',
       image:<Image style={{ flex:1, width:null, height:null, resizeMode:'cover' }}
         source={require('../../assets/The_Varnish.jpg')}/>,
-      description:<Text>Mixologists handcraft custom cocktails at this dark, moody speakeasy hidden behind Cole's bar.</Text>
+        description: <Text>Mixologists handcraft custom cocktails at this dark, moody speakeasy hidden behind Cole's bar.</Text>,
+
     },
     {
         name: 'Frolic Room',
@@ -51,7 +58,8 @@ const LocationInfo = [
         distance:'1.3 miles',
         image:<Image style={{ flex:1, width:null, height:null, resizeMode:'cover' }}
             source={require('../../assets/Frolic_Room.jpg')}/>,
-        description:<Text>Photos of movie stars deck the walls at this historic, no-frills bar, famous for its jukebox.</Text>
+        description: <Text>Photos of movie stars deck the walls at this historic, no-frills bar, famous for its jukebox.</Text>,
+        
     },
   ];
 
@@ -70,7 +78,8 @@ export default class HomeScreen extends Component {
             lng: null,
             error: null,
             name: props.name,
-            photoUrl: props.photoUrl
+            photoUrl: props.photoUrl,
+            liked: false
         }
         _utilities = new Utilities();
         //navigator.geolocation.watchPosition(this.geoSuccess,this.geoFailure,this.geoOptions);
@@ -326,16 +335,25 @@ export default class HomeScreen extends Component {
                                                 cost: item.cost,
                                                 distance: item.distance,
                                                 image: item.image,
-                                                description: item.description
+                                                description: item.description,
+                                                favorite: item.favorite,
+                                                inQueue: item.inQueue
                                             })}
                                             >
                                             <View style={styles.placeContainer}>
                                                 <View style={{ flex: 1 }}>
-                                                    {item.image}
-                                                </View>
-                                                <View style={{ height: 70, alignItems: 'flex-start', 
-                                                    justifyContent: 'space-evenly', 
-                                                    paddingLeft: 10 }}>
+                                                        {item.image}
+
+                                                        
+                                                    
+                                                        
+                                                    </View>
+                                                    <View style={{ justifyContent: 'space-between', flexDirection: "row" }}>
+                                                        <View style={{
+                                                            height: 70, alignItems: 'flex-start',
+                                                            justifyContent: 'space-between',
+                                                            paddingLeft: 10
+                                                        }}>
                                                     <Text style={{ fontSize: 15, fontWeight: 'bold', color: 'white'}}>
                                                         {item.name}
                                                     </Text>
@@ -352,7 +370,22 @@ export default class HomeScreen extends Component {
                                                         rating={item.rating}
                                                         starSize={15}
                                                     />
-                                                </View>
+                                                    </View>
+                                                        <View style={{ alignSelf: 'center', padding: 10, flexDirection: "row" }}>
+                                                            
+                                                    <Icon name={!item.favorite? "heart-o" : "heart"} size={30} color="#C2185B" onPress={() => {
+                                                            item.favorite = !item.favorite;
+                                                                this.forceUpdate();
+                                                             }} style = {{paddingRight: 20}}></Icon>
+                                               
+                                                    <Icon name={!item.inQueue? "plus" : "minus"} size={30} color="#C2185B" onPress={() => {
+                                                            item.inQueue = !item.inQueue;
+                                                                this.forceUpdate();
+                                                             }}></Icon>
+                                                   
+                                                    </View>
+                                                    </View>
+
                                             </View>  
                                             </TouchableOpacity>
                                         }
